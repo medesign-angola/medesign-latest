@@ -32,7 +32,8 @@ export class HomeComponent implements IHomePageClass, OnInit {
       title: 'Me Design Angola',
       description: 'Oferecer soluções práticas e satisfatórias de Web Design, Web Marketing, Design Gráfico e Brand Management',
       image: 'https://medesign-latest.vercel.app/assets/images/static/coverImage.png',
-      url: 'https://medesign-angola.com'
+      // url: 'https://medesign-angola.com',
+      url: 'https://medesign-latest.vercel.app'
     });
   }
 
