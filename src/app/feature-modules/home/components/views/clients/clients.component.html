@@ -1,0 +1,28 @@
+<div class="clients-section py-12 xl:py-8 bg-[url('assets/images/static/client-section-cover.png')] xl:bg-no-repeat xl:bg-contain xl:bg-center">
+    <div class="limited-container ">
+        <div class="paragraph mb-14 xl:mb-5">
+            <p class="text-white font-medium text-lg text-center max-w-[416px] xl:text-left">
+                Conheça alguns dos nossos clientes e produtos que já atendemos.
+            </p>
+        </div>
+        <div class="bg-[#171D1F] w-[50%] h-[1.5px] hidden xl:block"></div>
+        @defer (when (this.clients.length > 0)) {
+            <div class="clients w-full xl:mt-3 flex flex-wrap justify-between xl:justify-start items-stretch">
+                @for (client of this.clients; track client.name) {
+                    <div class="client relative appear-softly px-[15px] py-[10px]">
+                        <img src="{{ client.imagePath }}" class="w-full h-full max-w-[80px] max-h-[60px]" alt="{{ client.name }}">
+                    </div>
+                } @empty {
+                }
+            </div>
+        } @placeholder {
+            <div class="xl:mt-3 w-full flex flex-wrap gap-y-7 justify-between xl:justify-start items-stretch">
+                @for (placeholder of [0,1,2,3,4,5]; track placeholder) {
+                    <div class="relative px-[15px] py-[10px] w-[100px] h-[60px]">
+                        <div class="placeholder w-full h-full"></div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

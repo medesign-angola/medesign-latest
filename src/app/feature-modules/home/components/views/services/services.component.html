@@ -1,0 +1,29 @@
+<div class="service-content mt-24">
+    <div class="title limited-container" #headContent>
+        <h1 class="text-primary mb-6 text-[2.5rem] text-center xl:text-left xl:text-[2.688rem] max-w-[632px] font-medium leading-[48px] tracking-[-1.2px] xl:leading-[52px]">
+            Somos dedicados a converter ideias em resultados tangíveis
+        </h1>
+        <p class="text-[rgba(3,3,3,0.70)] text-lg text-center xl:text-left font-medium max-w-[415px] leading-[24px] tracking-[-0.36px]">
+            Responsáveis e atenciosos por cada detalhe, nossa missão é impulsionar a inovação, transformando ideias em soluções valiosas.
+        </p>
+    </div>
+
+    <div class="services">
+        <service-template
+        [paddingXForCardsContainer]="this.paddingXForCardsContainer"
+        [services]="this.services"
+        />
+    </div>
+
+    <div class="get-in-touch limited-container flex justify-center items-center">
+        <button class="bg-primary text-white px-6 py-3 rounded-full flex gap-x-2 justify-center items-center">
+            <span class="font-semibold text-lg">
+                Entrar em contacto
+            </span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.4533 2.19479L17.7267 6.27247C17.9483 6.41656 18.0592 6.4886 18.1395 6.5847C18.2106 6.66976 18.2639 6.76816 18.2965 6.87412C18.3333 6.99382 18.3333 7.12601 18.3333 7.39039V13.5001C18.3333 14.9003 18.3333 15.6003 18.0609 16.1351C17.8212 16.6055 17.4387 16.988 16.9683 17.2277C16.4335 17.5001 15.7335 17.5001 14.3333 17.5001H5.66667C4.26654 17.5001 3.56647 17.5001 3.0317 17.2277C2.56129 16.988 2.17884 16.6055 1.93916 16.1351C1.66667 15.6003 1.66667 14.9003 1.66667 13.5001V7.39039C1.66667 7.12601 1.66667 6.99382 1.70348 6.87412C1.73606 6.76816 1.78946 6.66976 1.86054 6.5847C1.94085 6.4886 2.05168 6.41656 2.27335 6.27247L8.5467 2.19479M11.4533 2.19479C10.9273 1.85287 10.6643 1.68191 10.3809 1.61539C10.1304 1.55659 9.86965 1.55659 9.61915 1.61539C9.33576 1.68191 9.07274 1.85287 8.5467 2.19479M11.4533 2.19479L17.4734 6.10785C17.76 6.29414 17.9033 6.38729 17.9529 6.50541C17.9963 6.60864 17.9963 6.72498 17.9529 6.82821C17.9033 6.94634 17.76 7.03948 17.4734 7.22578L11.4533 11.1388C10.9273 11.4808 10.6643 11.6517 10.3809 11.7182C10.1304 11.777 9.86965 11.777 9.61915 11.7182C9.33576 11.6517 9.07274 11.4808 8.5467 11.1388L2.52661 7.22577C2.24001 7.03948 2.09671 6.94634 2.04708 6.82821C2.0037 6.72498 2.0037 6.60864 2.04708 6.50541C2.09671 6.38729 2.24001 6.29414 2.52661 6.10785L8.5467 2.19479" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+</div>

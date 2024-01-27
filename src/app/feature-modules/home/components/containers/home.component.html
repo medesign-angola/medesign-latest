@@ -1,0 +1,26 @@
+<div class="component-container">
+    <!-- xl:max-w-[1359px] -->
+    <div class="hero-section xl:max-h-[calc((1307_/_1536)_*_100vw)] xl:overflow-hidden bg-[url('assets/images/static/cover-mobile.png')] xl:bg-[url('assets/images/static/cover.png')] bg-cover bg-center">
+        <md-hero />
+    </div>
+    <div class="service-section">
+        <md-services
+        [services]="this.services"
+        />
+    </div>
+    <div class="works-section">
+        <md-works
+        [works]="this.works"
+        />
+    </div>
+    <div class="clients-section">
+        <md-clients
+        [clients]="this.clients"
+        />
+    </div>
+    <div class="posts-section">
+        <md-posts
+        [posts]="this.posts"
+        />
+    </div>
+</div>

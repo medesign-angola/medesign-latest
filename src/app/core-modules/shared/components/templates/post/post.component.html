@@ -1,0 +1,88 @@
+<div class="cards-container overflow-x-auto pt-10 pb-14 xl:pt-0 xl:pb-0 flex xl:block justify-center"
+[style.paddingLeft.px]="this.paddingXForCardsContainer"
+[style.paddingRight.px]="this.paddingXForCardsContainer"
+>
+    <div class="cards-scroller flex flex-col xl:flex-row gap-y-8 gap-x-5 xl:gap-x-8 justify-start items-stretch w-max">
+                
+        @defer(when (this.posts.length > 0)){
+            @for (post of this.posts; track post.id) {
+                <div class="card appear-softly xl:mt-14 xl:mb-20  p-4 w-full xl:w-auto max-w-[21.25rem] flex gap-y-6 flex-col justify-between items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
+                    <div class="card-header relative overflow-hidden rounded-2xl max-h-[12.875rem] w-full">
+                        <div class="categories absolute top-2 flex flex-wrap gap-2 items-center left-2 z-[2]">
+                            
+                            <div *ngFor="let category of post.categories" class="category-ship w-fit py-1 px-3 flex justify-between items-center gap-2 bg-[rgba(3,3,3,0.20)] backdrop-blur-lg rounded-full border-[0.095rem] border-[rgba(255,255,255,0.20)]">
+                                <p class="text-white text-sm font-medium leading-6">
+                                    {{ category.name }}
+                                </p>
+                            </div>
+        
+                        </div>
+                        <div class="image">
+                            <a routerLink="/new/{{ post.slug }}">
+                                <img src="{{ post.imagePath }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body flex flex-col gap-y-4">
+                        <div class="tiny-details w-full flex justify-between items-center">
+                            <span class="text-primary text-base font-medium limit-text-lines one-line max-w-[7.188rem]">Há {{ post.createdAt }}</span>
+                            <span class="text-[rgba(3,3,3,0.60)] text-base leading-6 limit-text-lines one-line max-w-[9.375rem]">{{ post.readingTime }} de leitura</span>
+                        </div>
+                        <div class="title w-full">
+                            <h1 class="text-primary font-semibold text-2xl limit-text-lines three-lines">
+                                <a routerLink="/new/{{ post.slug }}">
+                                    {{ post.title }}
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-footer w-full ">
+                        <div class="ship flex gap-2 justify-start items-center py-1 px-3 bg-black w-fit text-white font-medium text-sm rounded-full backdrop-blur-lg">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.61342 8.47513C1.52262 8.33137 1.47723 8.25949 1.45182 8.14862C1.43273 8.06534 1.43273 7.93401 1.45182 7.85073C1.47723 7.73986 1.52262 7.66798 1.61341 7.52422C2.36369 6.33624 4.59693 3.33301 8.00027 3.33301C11.4036 3.33301 13.6369 6.33623 14.3871 7.52422C14.4779 7.66798 14.5233 7.73986 14.5487 7.85073C14.5678 7.93401 14.5678 8.06534 14.5487 8.14862C14.5233 8.25949 14.4779 8.33137 14.3871 8.47513C13.6369 9.66311 11.4036 12.6663 8.00027 12.6663C4.59693 12.6663 2.36369 9.66311 1.61342 8.47513Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8.00027 9.99967C9.10484 9.99967 10.0003 9.10424 10.0003 7.99967C10.0003 6.89511 9.10484 5.99967 8.00027 5.99967C6.8957 5.99967 6.00027 6.89511 6.00027 7.99967C6.00027 9.10424 6.8957 9.99967 8.00027 9.99967Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ post.viewsCount }}
+                        </div>
+                    </div>
+                </div>
+            } @empty {}
+
+        } @placeholder {
+            @for (post of [0,1,2,3]; track $index) {
+                <div class="card xl:mt-14 xl:mb-20  p-4 w-full xl:w-auto max-w-[21.25rem] flex gap-y-6 flex-col justify-center items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
+                    <div class="card-header relative overflow-hidden rounded-2xl h-[12.875rem] w-full">
+                        <div class="image placeholder w-full h-full">
+                        </div>
+                    </div>
+                    <div class="card-body flex flex-col gap-y-4">
+                        <div class="tiny-details w-full h-6 flex gap-5 justify-between relative items-center">
+                            <span class="placeholder !relative text-transparent rounded-lg">Há 2 minutos</span>
+                            <span class="placeholder !relative text-transparent rounded-lg">2 minutos de leitura</span>
+                        </div>
+                        <div class="title relative w-full">
+                            <h1 class="text-primary font-semibold text-2xl placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                Texto para o placehold
+                            </h1>
+                            <h1 class="my-2 text-primary font-semibold text-2xl placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                Texto para o placeholder
+                            </h1>
+                            <h1 class="text-primary font-semibold text-2xl placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                 Texto para o pla
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-footer w-full relative">
+                        <div class="ship placeholder !relative flex gap-2 justify-start items-center py-1 px-3 !w-fit !h-max text-sm text-transparent rounded-full">
+                            <svg class="opacity-0" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.61342 8.47513C1.52262 8.33137 1.47723 8.25949 1.45182 8.14862C1.43273 8.06534 1.43273 7.93401 1.45182 7.85073C1.47723 7.73986 1.52262 7.66798 1.61341 7.52422C2.36369 6.33624 4.59693 3.33301 8.00027 3.33301C11.4036 3.33301 13.6369 6.33623 14.3871 7.52422C14.4779 7.66798 14.5233 7.73986 14.5487 7.85073C14.5678 7.93401 14.5678 8.06534 14.5487 8.14862C14.5233 8.25949 14.4779 8.33137 14.3871 8.47513C13.6369 9.66311 11.4036 12.6663 8.00027 12.6663C4.59693 12.6663 2.36369 9.66311 1.61342 8.47513Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8.00027 9.99967C9.10484 9.99967 10.0003 9.10424 10.0003 7.99967C10.0003 6.89511 9.10484 5.99967 8.00027 5.99967C6.8957 5.99967 6.00027 6.89511 6.00027 7.99967C6.00027 9.10424 6.8957 9.99967 8.00027 9.99967Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            213
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

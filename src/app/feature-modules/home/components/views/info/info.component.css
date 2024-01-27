@@ -1,0 +1,77 @@
+.hero-info-section-image .overlay{
+    background: linear-gradient(180deg, rgba(3, 3, 3, 0.00) 0%, #030303 100%);
+}
+.ship.active{
+    color: #fff !important;
+}
+.ship.active .lg-dot{
+    background-color: hsl(0, 0%, 100%) !important;
+}
+.info-cards .card{
+    border: 1.5px solid #171D1F;
+    background: #0E1010;
+    /* background: red; */
+}
+.info-cards .card .icon > div{
+    border: 1.5px solid #171D1F;
+    background: rgba(255, 255, 255, 0.00);
+}
+.card .description p{
+    max-height: 72px;
+    overflow-y: auto;
+}
+.card .description p::-webkit-scrollbar{
+    width: 3px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 15%);
+    border-radius: 10px;
+}
+
+.card{
+    transition: all .38s ease-in-out;
+}
+
+.active-state{
+    top: 0%;
+    width: 100%;
+    z-index: 3;
+}
+.gone {
+    top: -15px;
+    width: 105%;
+    z-index: 1;
+    opacity: 0;
+}
+
+.inactive-second-layer{
+    top: 5%;
+    width: 95%;
+    z-index: 2;
+}
+
+.inactive-last-layer{
+    top: 10%;
+    width: 85%;
+    z-index: 1;
+}
+
+@media screen and (min-width: 1280px) {
+    .gone {
+        top: -15px;
+        width: 120%;
+        z-index: 3;
+        opacity: 0;
+    }
+    
+    .inactive-second-layer{
+        top: 5%;
+        width: 95%;
+        z-index: 2;
+    }
+
+    .inactive-last-layer{
+        top: 10%;
+        width: 85%;
+        z-index: 1;
+    }
+}

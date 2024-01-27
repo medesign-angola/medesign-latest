@@ -1,0 +1,12 @@
+nav ul li > a{
+    color: #fff;
+    opacity: 70%;
+    font-weight: 400;
+    transition: .3s ease-in-out;
+}
+nav ul li > a:hover{
+    opacity: 100%;
+}
+.input-search{
+    transition: .6s ease-in-out;
+}

@@ -1,0 +1,145 @@
+<div class="info-component mt-9 xl:mt-0 flex flex-col xl:max-w-[var(--max-w)] xl:mx-auto gap-y-[64px] xl:flex-row xl:justify-between xl:items-center">
+    <div class="hero-info-section-image relative max-w-[95%] mx-auto xl:mx-0 xl:min-w-[calc((564/1536)*100vw)] xl:min-h-[621px]">
+        <img src="assets/images/static/info-section-model-mockup.png" alt="">
+        <div class="overlay absolute w-full h-full left-0 top-0"></div>
+    </div>
+    <div class="section-content xl:w-full xl:max-w-[calc((650/1536)*100vw)] text-white">
+        <div class="title text-center xl:text-left max-w-[95%] mx-auto xl:max-w-[95%] xl:mx-0">
+            <h1 class="text-[2.5rem] xl:text-[2.813rem] leading-[3rem] font-medium">
+                Existimos para transformar ideias e agregar valor.
+            </h1>
+        </div>
+        <div class="content mt-14 flex flex-col xl:flex-row-reverse xl:gap-x-4">
+            <div class="scroller mb-8 xl:h-max xl:py-4 xl:px-3 overflow-x-auto xl:overflow-x-visible px-5 xl:rounded-2xl xl:bg-[rgba(16,19,19,0.80)] xl:border-[1.5px] xl:border-[#171D1F]">
+                <div class="ships flex gap-2 xl:flex-col justify-start xl:justify-start items-center xl:items-start w-max">
+                    <div
+                    (click)="changeActiveData(VISION_INDEX)"
+                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    [ngClass]="{ 'active': this.presentations[VISION_INDEX].active }"
+                    >
+                        <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
+                        Nossa Visão
+                    </div>
+                    <div
+                    (click)="changeActiveData(MISSION_INDEX)"
+                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    [ngClass]="{ 'active': this.presentations[MISSION_INDEX].active }"
+                    >
+                        <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
+                        Nossa Missão
+                    </div>
+                    <div
+                    (click)="changeActiveData(VALUES_INDEX)"
+                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    [ngClass]="{ 'active': this.presentations[VALUES_INDEX].active }"
+                    >
+                        <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
+                        Nossos Valores
+                    </div>
+                </div>
+            </div>
+            <div class="info-cards w-full xl:max-w-[430px] relative limited-container min-h-[250px]">
+
+                <div class="card vision absolute left-[50%] translate-x-[-50%] p-6 rounded-2xl flex flex-col gap-y-6 xl:min-h-[227px]"
+                [ngClass]="{
+                    'active-state': this.activePresentationalIndex() == VISION_INDEX,
+                    'gone': this.activePresentationalIndex() > VISION_INDEX
+                }"
+                >
+                    <div class="icon">
+                        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="#171D1F" stroke-width="1.5"/>
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="url(#paint0_linear_1696_554)" stroke-opacity="0.2" stroke-width="1.5"/>
+                            <path d="M20 14.5V13M16.0607 16.0607L15 15M16.0607 24L15 25.0607M24 16.0607L25.0607 15M14.5 20H13M26.8645 27.1896L24.3727 31.817C24.0881 32.3457 23.9457 32.61 23.7745 32.6769C23.6259 32.7349 23.4585 32.7185 23.324 32.6328C23.1689 32.534 23.0806 32.2471 22.9038 31.6733L19.4452 20.4453C19.3008 19.9765 19.2286 19.7421 19.2867 19.5838C19.3373 19.446 19.446 19.3373 19.5838 19.2867C19.7421 19.2286 19.9765 19.3008 20.4452 19.4452L31.6732 22.9038C32.247 23.0806 32.5339 23.169 32.6327 23.324C32.7185 23.4586 32.7348 23.6259 32.6768 23.7745C32.61 23.9458 32.3456 24.0881 31.817 24.3728L27.1896 26.8645C27.111 26.9068 27.0717 26.9279 27.0374 26.9551C27.0068 26.9792 26.9792 27.0068 26.9551 27.0374C26.9279 27.0717 26.9068 27.111 26.8645 27.1896Z" stroke="url(#paint1_linear_1696_554)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1696_554" x1="2" y1="0.5" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.128628" stop-color="white"/>
+                                    <stop offset="1" stop-color="#171D1F" stop-opacity="0"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_1696_554" x1="14" y1="14" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.119792" stop-color="white"/>
+                                    <stop offset="1" stop-color="#091011"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>                            
+                    </div>
+                    <div class="description">
+                        <h4 class=" text-lg font-semibold text-white mb-2">
+                            {{ this.presentations[0].label }}
+                        </h4>
+                        <p class="text-white/70 leading-6 text-base">
+                            {{ this.presentations[0].description }}
+                        </p>
+                    </div>
+                </div>
+                <div class="card mission absolute inactive-second-state left-[50%] translate-x-[-50%] p-6 rounded-2xl flex flex-col gap-y-6 xl:min-h-[227px]"
+                [ngClass]="{
+                    'inactive-second-layer': this.activePresentationalIndex() < MISSION_INDEX,
+                    'active-state': this.activePresentationalIndex() == MISSION_INDEX,
+                    'gone': this.activePresentationalIndex() > 1
+                }"
+                >
+                    <div class="icon">
+                        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="#171D1F" stroke-width="1.5"/>
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="url(#paint0_linear_1696_554)" stroke-opacity="0.2" stroke-width="1.5"/>
+                            <path d="M20 14.5V13M16.0607 16.0607L15 15M16.0607 24L15 25.0607M24 16.0607L25.0607 15M14.5 20H13M26.8645 27.1896L24.3727 31.817C24.0881 32.3457 23.9457 32.61 23.7745 32.6769C23.6259 32.7349 23.4585 32.7185 23.324 32.6328C23.1689 32.534 23.0806 32.2471 22.9038 31.6733L19.4452 20.4453C19.3008 19.9765 19.2286 19.7421 19.2867 19.5838C19.3373 19.446 19.446 19.3373 19.5838 19.2867C19.7421 19.2286 19.9765 19.3008 20.4452 19.4452L31.6732 22.9038C32.247 23.0806 32.5339 23.169 32.6327 23.324C32.7185 23.4586 32.7348 23.6259 32.6768 23.7745C32.61 23.9458 32.3456 24.0881 31.817 24.3728L27.1896 26.8645C27.111 26.9068 27.0717 26.9279 27.0374 26.9551C27.0068 26.9792 26.9792 27.0068 26.9551 27.0374C26.9279 27.0717 26.9068 27.111 26.8645 27.1896Z" stroke="url(#paint1_linear_1696_554)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1696_554" x1="2" y1="0.5" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.128628" stop-color="white"/>
+                                    <stop offset="1" stop-color="#171D1F" stop-opacity="0"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_1696_554" x1="14" y1="14" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.119792" stop-color="white"/>
+                                    <stop offset="1" stop-color="#091011"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="description">
+                        <h4 class=" text-lg font-semibold text-white mb-2">
+                            {{ this.presentations[1].label }}
+                        </h4>
+                        <p class="text-white/70 leading-6 text-base">
+                            {{ this.presentations[1].description }}
+                        </p>
+                    </div>
+                </div>
+                <div class="card values absolute inactive-last-layer left-[50%] translate-x-[-50%] p-6 rounded-2xl flex flex-col gap-y-6 xl:min-h-[227px]"
+                [ngClass]="{
+                    'inactive-last-layer': this.activePresentationalIndex() == VISION_INDEX,
+                    'inactive-second-layer': this.activePresentationalIndex() == MISSION_INDEX,
+                    'active-state': this.activePresentationalIndex() == VALUES_INDEX
+                }"
+                >
+                    <div class="icon">
+                        <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="#171D1F" stroke-width="1.5"/>
+                            <rect x="1" y="1" width="44.0001" height="44" rx="12" stroke="url(#paint0_linear_1696_554)" stroke-opacity="0.2" stroke-width="1.5"/>
+                            <path d="M20 14.5V13M16.0607 16.0607L15 15M16.0607 24L15 25.0607M24 16.0607L25.0607 15M14.5 20H13M26.8645 27.1896L24.3727 31.817C24.0881 32.3457 23.9457 32.61 23.7745 32.6769C23.6259 32.7349 23.4585 32.7185 23.324 32.6328C23.1689 32.534 23.0806 32.2471 22.9038 31.6733L19.4452 20.4453C19.3008 19.9765 19.2286 19.7421 19.2867 19.5838C19.3373 19.446 19.446 19.3373 19.5838 19.2867C19.7421 19.2286 19.9765 19.3008 20.4452 19.4452L31.6732 22.9038C32.247 23.0806 32.5339 23.169 32.6327 23.324C32.7185 23.4586 32.7348 23.6259 32.6768 23.7745C32.61 23.9458 32.3456 24.0881 31.817 24.3728L27.1896 26.8645C27.111 26.9068 27.0717 26.9279 27.0374 26.9551C27.0068 26.9792 26.9792 27.0068 26.9551 27.0374C26.9279 27.0717 26.9068 27.111 26.8645 27.1896Z" stroke="url(#paint1_linear_1696_554)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1696_554" x1="2" y1="0.5" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.128628" stop-color="white"/>
+                                    <stop offset="1" stop-color="#171D1F" stop-opacity="0"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_1696_554" x1="14" y1="14" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0.119792" stop-color="white"/>
+                                    <stop offset="1" stop-color="#091011"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>                            
+                    </div>
+                    <div class="description">
+                        <h4 class=" text-lg font-semibold text-white mb-2">
+                            {{ this.presentations[2].label }}
+                        </h4>
+                        <p class="text-white/70 leading-6 text-base">
+                            {{ this.presentations[2].description }}
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

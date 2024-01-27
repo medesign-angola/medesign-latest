@@ -1,0 +1,9 @@
+.main-content h1{
+    background: linear-gradient(94deg, #FFF 25.79%, #091011 122.84%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-main-section-image .overlay{
+    background: linear-gradient(180deg, rgba(3, 3, 3, 0.00) 6.23%, #030303 99.98%);
+}

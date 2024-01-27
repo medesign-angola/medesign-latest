@@ -1,0 +1,33 @@
+<div class="work-content my-24">
+    <div class="title limited-container" #headContent>
+        <p class="primary text-lg text-center xl:text-left leading-normal">
+            Trabalhos seleccionados
+        </p>
+        <h1 class="text-primary mt-4 text-[2.5rem] text-center xl:text-left xl:text-[2.688rem] max-w-[632px] font-medium leading-[48px] tracking-[-1.2px] xl:leading-[52px]">
+            Soluções de Design que transformam <span class=" font-light italic text-3xl">"Produtos"</span>
+        </h1>
+    </div>
+
+    <div class="works">
+        <work-template
+        [works]="this.works"
+        />
+        <!-- [cardType]="'small'"
+        [showFloatedLabel]="true"
+        [showFloatedDescription]="false" -->
+    </div>
+
+    @if (this.works.length > 0) {
+        <div class="see-more flex justify-center items-center">
+            <button class="bg-white text-black px-6 py-3 rounded-full flex gap-x-2 justify-center items-center border-[1.5px] border-primary">
+                <span class="font-semibold text-lg">
+                    Ver mais trabalhos
+                </span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.33333 10H16.6667M16.6667 10L11.6667 5M16.6667 10L11.6667 15" stroke="#030303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    }
+
+</div>
