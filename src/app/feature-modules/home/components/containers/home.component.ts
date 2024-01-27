@@ -31,7 +31,7 @@ export class HomeComponent implements IHomePageClass, OnInit {
     this.metaService.addMetaTags({
       title: 'Me Design Angola',
       description: 'Oferecer soluções práticas e satisfatórias de Web Design, Web Marketing, Design Gráfico e Brand Management',
-      image: 'assets/images/static/coverImage.png',
+      image: 'https://medesign-latest.vercel.app/assets/images/static/coverImage.png',
       url: 'https://medesign-angola.com'
     });
   }
