@@ -1,12 +1,12 @@
-<div class="cards-container overflow-x-auto pt-10 pb-14 xl:pt-0 xl:pb-0 flex xl:block justify-center"
+<div class="cards-container overflow-x-auto pt-10 pb-14 xl:pt-0 xl:pb-0 flex md:block justify-center"
 [style.paddingLeft.px]="this.paddingXForCardsContainer"
 [style.paddingRight.px]="this.paddingXForCardsContainer"
 >
-    <div class="cards-scroller flex flex-col xl:flex-row gap-y-8 gap-x-5 xl:gap-x-8 justify-start items-stretch w-max">
+    <div class="cards-scroller flex flex-col md:flex-row gap-y-8 gap-x-5 md:gap-x-8 justify-start items-stretch w-max">
                 
         @defer(when (this.posts.length > 0)){
             @for (post of this.posts; track post.id) {
-                <div class="card appear-softly xl:mt-14 xl:mb-20  p-4 w-full xl:w-auto max-w-[21.25rem] flex gap-y-6 flex-col justify-between items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
+                <div class="card appear-softly md:mt-10 xl:mt-14 md:mb-12 xl:mb-20 p-4 md:w-auto max-w-[21.25rem] flex gap-y-6 flex-col justify-between items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
                     <div class="card-header relative overflow-hidden rounded-2xl max-h-[12.875rem] w-full">
                         <div class="categories absolute top-2 flex flex-wrap gap-2 items-center left-2 z-[2]">
                             
@@ -49,8 +49,8 @@
             } @empty {}
 
         } @placeholder {
-            @for (post of [0,1,2,3]; track $index) {
-                <div class="card xl:mt-14 xl:mb-20  p-4 w-full xl:w-auto max-w-[21.25rem] flex gap-y-6 flex-col justify-center items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
+            @for (post of this.placeholdersArray; track $index) {
+                <div class="card xl:mt-14 xl:mb-20  p-4 xl:w-auto w-[21.25rem] flex gap-y-6 flex-col justify-center items-center rounded-2xl border-[0.094.rem] border-[#171D1F] shadow-[0px_20px_80px_0px_rgba(3,3,3,0.05)]">
                     <div class="card-header relative overflow-hidden rounded-2xl h-[12.875rem] w-full">
                         <div class="image placeholder w-full h-full">
                         </div>

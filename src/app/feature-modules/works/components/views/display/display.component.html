@@ -1,0 +1,71 @@
+<div class="display-content md:py-12">
+    <div class="limited-container">
+        <div class="content-header flex flex-col md:flex-row justify-between items-center">
+
+            <div class="main-title">
+                <h1 class=" text-3xl font-medium text-primary">
+                    Projectos recentes
+                </h1>
+            </div>
+            <div class="search-input min-w-[17.5rem]">
+                <div class="md:p-3 md:rounded-lg bg-primary/5 overflow-hidden flex gap-2 justify-start items-center">
+                    <div class="search-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="#030303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="search-input shrink">
+                        <input
+                        type="text"
+                        name="searchWork"
+                        class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
+                        placeholder="Pesquisar projectos"
+                        >
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content-body mt-10 flex flex-col lg:flex-row gap-x-8 justify-between items-stretch">
+
+            <aside class="categories-navigation lg:min-w-[11rem]">
+                <div class="navigation-container flex flex-col gap-y-2">
+
+                    @for (category of this.categories; track category.id) {
+                        <div class="navigation-item cursor-pointer block px-3 py-2 rounded-lg"
+                        [routerLink]="(category.childrens) ? undefined : ['/works']"
+                        [queryParams]="(category.childrens) ? undefined: { scope: category.slug }"
+                        [ngClass]="{ 'active': category.isActive }"
+                        >
+                            <div class="content flex justify-between items-center">
+                                <span class="w-full">
+                                    {{ category.name }}
+                                </span>
+                                <svg width="20" *ngIf="category.childrens" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 7.5L10 12.5L15 7.5" stroke="#4F4F4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </aside>
+            <section class="works lg:w-[69.125rem]">
+
+                <work-template
+                [works]="this.works"
+                [cardType]="'small'"
+                [cardsGap]="16"
+                [totalPlaceholderCards]="6"
+                [cardWidth]="'w-full md:w-[calc((32.8%-5px))]'"
+                [showFloatedLabel]="true"
+                [showFloatedDescription]="false"
+                />
+
+            </section>
+
+        </div>
+
+    </div>
+</div>

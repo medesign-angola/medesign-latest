@@ -1,0 +1,11 @@
+.navigation-item{
+    background-color: white;
+    color: rgba(3, 3, 3, 0.70);
+    font-weight: 500;
+    transition: 1s;
+}
+/* .navigation-item:hover, */
+.navigation-item.active{
+    background-color: var(--primary-color);
+    color: #fff;
+}

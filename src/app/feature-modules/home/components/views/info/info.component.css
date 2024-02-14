@@ -55,6 +55,27 @@
     z-index: 1;
 }
 
+@media screen and (min-width: 768px) {
+    .gone {
+        top: -15px;
+        width: 120%;
+        z-index: 3;
+        opacity: 0;
+    }
+    
+    .inactive-second-layer{
+        top: 5%;
+        width: 95%;
+        z-index: 2;
+    }
+
+    .inactive-last-layer{
+        top: 1%;
+        width: 85%;
+        z-index: 1;
+    }
+}
+
 @media screen and (min-width: 1280px) {
     .gone {
         top: -15px;

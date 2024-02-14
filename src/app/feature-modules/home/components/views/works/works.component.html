@@ -3,12 +3,12 @@
         <p class="primary text-lg text-center xl:text-left leading-normal">
             Trabalhos seleccionados
         </p>
-        <h1 class="text-primary mt-4 text-[2.5rem] text-center xl:text-left xl:text-[2.688rem] max-w-[632px] font-medium leading-[48px] tracking-[-1.2px] xl:leading-[52px]">
+        <h1 class="text-primary mt-4 text-[2.5rem] text-center xl:text-left xl:text-[2.688rem] max-w-[632px] md:max-w-full xl:max-w-[632px] font-medium leading-[48px] tracking-[-1.2px] xl:leading-[52px]">
             Soluções de Design que transformam <span class=" font-light italic text-3xl">"Produtos"</span>
         </h1>
     </div>
 
-    <div class="works">
+    <div class="works my-14 py-14 xl:py-16 limited-container">
         <work-template
         [works]="this.works"
         />
@@ -19,7 +19,10 @@
 
     @if (this.works.length > 0) {
         <div class="see-more flex justify-center items-center">
-            <button class="bg-white text-black px-6 py-3 rounded-full flex gap-x-2 justify-center items-center border-[1.5px] border-primary">
+            <button
+            [routerLink]="['/works']"
+            [queryParams]="{ scope: 'all' }"
+            class="bg-white text-black px-6 py-3 rounded-full flex gap-x-2 justify-center items-center border-[1.5px] border-primary">
                 <span class="font-semibold text-lg">
                     Ver mais trabalhos
                 </span>
