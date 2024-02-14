@@ -18,19 +18,17 @@ export class WorkTemplateComponent implements OnInit, OnChanges {
   @Input() showFloatedLabel: boolean = true;
   @Input() showFloatedDescription: boolean = true;
   @Input() cardsGap: number = 70;
-  @Input() cardWidth: string = `w-full md:w-[calc((50%-35px))]`; // cardsGap / 2 = 35
-  placeholderDimentions: string = '';
+  @Input() cardWidth: string = ''; // cardsGap / 2 = 35
+  @Input() placeholderDimentions: string = '';
   @Input() totalPlaceholderCards: number = 4;
   placeholdersArray: number[] = [];
-
-  class: string = '';
 
   ngOnInit(): void {
     
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.cardHeightFun();
+    // this.cardHeightFun();
     this.generatePlaceholders();
   }
 
