@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 interface PresentationalInterface{
   label: string,
@@ -11,11 +11,15 @@ interface PresentationalInterface{
   templateUrl: './info.component.html',
   styleUrl: './info.component.css'
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent implements OnInit, AfterViewInit {
 
   VISION_INDEX: number = 0;
   MISSION_INDEX: number = 1;
   VALUES_INDEX: number = 2;
+  @ViewChild('shipsScroller') shipsScroller!: ElementRef<HTMLElement>;
+  @ViewChild('visionShip') visionShip!: ElementRef<HTMLElement>;
+  @ViewChild('missionShip') missionShip!: ElementRef<HTMLElement>;
+  @ViewChild('valuesShip') valuesShip!: ElementRef<HTMLElement>;
 
   presentations: PresentationalInterface[] = [
     {
@@ -36,6 +40,15 @@ export class InfoComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+   this.visionShip.nativeElement.addEventListener('click', () => {
+    this.shipsScroller.nativeElement.scrollTo(0, 0);
+   });
+   this.valuesShip.nativeElement.addEventListener('click', () => {
+    this.shipsScroller.nativeElement.scrollTo(this.valuesShip.nativeElement.offsetLeft, 0);
+   });
   }
 
   changeActiveData(pretendedIndex: number){

@@ -174,18 +174,24 @@
 }
 @media screen and (min-width: 1280px) {
     .limited-container{
-        max-width: 90% !important;
+        max-width: 90%;
     }
 }
 @media screen and (min-width: 1440px) {
     .limited-container{
-        max-width: var(--max-w) !important;
+        max-width: var(--max-w);
     }
 }
 @media screen and (min-width: 1600px) {
     .limited-container{
-        max-width: 85% !important;
+        max-width: 75%;
     }
+}
+@media screen and (min-width: 1900px) {
+  .limited-container{
+      /* max-width: 1536px; */
+      max-width: 1456px;
+  }
 }
 
 .overflow-x-auto::-webkit-scrollbar,

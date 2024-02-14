@@ -1,21 +1,25 @@
-<div class="info-component mt-9 xl:mt-0 flex flex-col xl:max-w-[var(--max-w)] xl:mx-auto gap-y-[64px] xl:flex-row xl:justify-between xl:items-center">
-    <div class="hero-info-section-image relative max-w-[95%] mx-auto xl:mx-0 xl:min-w-[calc((564/1536)*100vw)] xl:min-h-[621px]">
+<div class="info-component mt-9 xl:mt-0 flex flex-col xl:max-w-[90%] 2xl:max-w-[var(--max-w)] 4xl:max-w-[85%] 5xl:max-w-[91rem] xl:mx-auto gap-y-[64px] xl:flex-row xl:justify-between xl:items-center">
+    <div class="hero-info-section-image relative max-w-[95%] mx-auto xl:mx-0 xl:w-[calc((564/1536)*100vw)] xl:min-h-[621px]">
         <img src="assets/images/static/info-section-model-mockup.png" alt="">
         <div class="overlay absolute w-full h-full left-0 top-0"></div>
     </div>
-    <div class="section-content xl:w-full xl:max-w-[calc((650/1536)*100vw)] text-white">
+    <div class="section-content xl:w-[calc((650/1536)*100vw)] text-white">
         <div class="title text-center xl:text-left max-w-[95%] mx-auto xl:max-w-[95%] xl:mx-0">
             <h1 class="text-[2.5rem] xl:text-[2.813rem] leading-[3rem] font-medium">
                 Existimos para transformar ideias e agregar valor.
             </h1>
         </div>
-        <div class="content mt-14 flex flex-col xl:flex-row-reverse xl:gap-x-4">
-            <div class="scroller mb-8 xl:h-max xl:py-4 xl:px-3 overflow-x-auto xl:overflow-x-visible px-5 xl:rounded-2xl xl:bg-[rgba(16,19,19,0.80)] xl:border-[1.5px] xl:border-[#171D1F]">
-                <div class="ships flex gap-2 xl:flex-col justify-start xl:justify-start items-center xl:items-start w-max">
+        <div class="content mt-14 flex flex-col xl:flex-row-reverse xl:justify-end xl:gap-x-4">
+            <div
+            class="scroller mb-8 xl:h-max xl:py-4 xl:px-3 overflow-x-auto xl:overflow-x-visible px-5 xl:rounded-2xl xl:bg-[rgba(16,19,19,0.80)] xl:border-[1.5px] xl:border-[#171D1F]"
+            #shipsScroller
+            >
+                <div class="ships flex gap-2 xl:flex-col justify-startv md:justify-center md:w-full xl:w-auto xl:justify-start items-center xl:items-start w-max">
                     <div
                     (click)="changeActiveData(VISION_INDEX)"
                     class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[VISION_INDEX].active }"
+                    #visionShip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossa Visão
@@ -24,6 +28,7 @@
                     (click)="changeActiveData(MISSION_INDEX)"
                     class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[MISSION_INDEX].active }"
+                    #missionShip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossa Missão
@@ -32,13 +37,14 @@
                     (click)="changeActiveData(VALUES_INDEX)"
                     class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[VALUES_INDEX].active }"
+                    #valuesShip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossos Valores
                     </div>
                 </div>
             </div>
-            <div class="info-cards w-full xl:max-w-[430px] relative limited-container min-h-[250px]">
+            <div class="info-cards w-full xl:min-w-[430px] relative max-w-[95%] md:max-w-[70%] mx-auto min-h-[250px]">
 
                 <div class="card vision absolute left-[50%] translate-x-[-50%] p-6 rounded-2xl flex flex-col gap-y-6 xl:min-h-[227px]"
                 [ngClass]="{

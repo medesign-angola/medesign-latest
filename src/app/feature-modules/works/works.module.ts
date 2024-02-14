@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { WorksRoutingModule } from './works-routing.module';
-import { WorksComponent } from './works.component';
+import { WorksComponent } from './components/containers/works.component';
+import { HeroComponent } from './components/views/hero/hero.component';
+import { DisplayComponent } from './components/views/display/display.component';
+import { SharedModule } from '@shared/shared.module';
+import { WorkTemplateComponent } from '@shared/components/templates/work/work.component';
 
 
 @NgModule({
   declarations: [
-    WorksComponent
+    WorksComponent,
+    HeroComponent,
+    DisplayComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
+    WorkTemplateComponent,
     WorksRoutingModule
   ]
 })

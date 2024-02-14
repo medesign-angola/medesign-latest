@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IWork } from '@core/interfaces/work.interface';
+import { generatePlaceholdersArray } from '@shared/helpers/placeholder.helper';
 
 @Component({
   selector: 'work-template',
@@ -17,6 +18,10 @@ export class WorkTemplateComponent implements OnInit, OnChanges {
   @Input() showFloatedLabel: boolean = true;
   @Input() showFloatedDescription: boolean = true;
   @Input() cardsGap: number = 70;
+  @Input() cardWidth: string = `w-full md:w-[calc((50%-35px))]`; // cardsGap / 2 = 35
+  placeholderDimentions: string = '';
+  @Input() totalPlaceholderCards: number = 4;
+  placeholdersArray: number[] = [];
 
   class: string = '';
 
@@ -25,20 +30,25 @@ export class WorkTemplateComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.cardClass();
+    this.cardHeightFun();
+    this.generatePlaceholders();
   }
 
-  cardClass() {
+  cardHeightFun(){
     switch(this.cardType){
       case 'mixed':
-        this.class = 'w-[360px] h-[370px] xl:w-[600px] xl:h-[600px]';
+        this.placeholderDimentions = `${ this.cardWidth } h-[20rem] xl:h-[37.5rem]`;
         break;
       case 'big':
-        this.class = 'w-[600px] h-[600px]';
+        this.placeholderDimentions = `${ this.cardWidth } h-[37.5rem]`;
         break;
       default:
-        this.class = 'w-[360px] h-[370px]';
+        this.placeholderDimentions = `${ this.cardWidth } h-[20rem]`;
     }
+  }
+
+  generatePlaceholders(){
+    this.placeholdersArray = generatePlaceholdersArray(this.totalPlaceholderCards);
   }
   
 }
