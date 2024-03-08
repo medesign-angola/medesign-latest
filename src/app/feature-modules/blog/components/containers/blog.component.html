@@ -1,0 +1,17 @@
+<div class="module-container">
+
+    <div class="hero-section mb-12">
+        <md-hero
+        [heroCoverImage]="this.heroCoverImageEnum.POSTS"
+        />
+    </div>
+    <div class="display-section mb-28" #displaySectionElementRef>
+        <posts-display
+        (changeScopeEventEmitter)="this.changeScopeEventHandler($event)"
+        (changeCategoryDropdownStatusEventEmitter)="this.changeCategoryVisibilityEventHandler($event)"
+        [categories]="this.categories"
+        [posts]="this.posts"
+        />
+    </div>
+
+</div>

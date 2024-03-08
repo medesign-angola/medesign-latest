@@ -1,0 +1,25 @@
+.limited-hero{
+    max-width: 100%;
+    margin: 0px auto;
+}
+@media screen and (min-width: 1280px) {
+    .limited-hero{
+        max-width: 90%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .limited-hero{
+        max-width: var(--max-w);
+    }
+}
+@media screen and (min-width: 1600px) {
+    .limited-hero{
+        max-width: 75%;
+    }
+}
+@media screen and (min-width: 1900px) {
+  .limited-hero{
+      /* max-width: 1536px; */
+      max-width: 1456px;
+  }
+}

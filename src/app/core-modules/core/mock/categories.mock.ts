@@ -41,7 +41,7 @@ export const WORK_CATEGORIES: ICategory[] = [
             },
             {
                 id: 26,
-                name: 'Wrbsite',
+                name: 'Website',
                 slug: 'website',
                 isActive: false
             }
@@ -66,7 +66,51 @@ export const WORK_CATEGORIES: ICategory[] = [
         name: 'Mobile App',
         slug: 'mobile-app',
         isActive: false,
+        childrens: []
     },
 ];
 
-export const POST_CATEGORIES: ICategory[] = [];
+export const POST_CATEGORIES: ICategory[] = [
+    {
+        id: 40,
+        name: 'Tech & Design',
+        slug: 'tech-&-design',
+        isActive: false,
+        childrens: []
+    },
+    {
+        id: 41,
+        name: 'Marketing Digital',
+        slug: 'marketing-digital',
+        isActive: false,
+        childrens: []
+    },
+    {
+        id: 42,
+        name: 'Front End',
+        slug: 'front-end',
+        isActive: false,
+        childrens: []
+    },
+    {
+        id: 43,
+        name: 'Produtividade',
+        slug: 'produtividade',
+        isActive: false,
+        childrens: []
+    },
+    {
+        id: 44,
+        name: 'Back End',
+        slug: 'back-end',
+        isActive: false,
+        childrens: []
+    },
+    {
+        id: 45,
+        name: 'Tech',
+        slug: 'tech',
+        isActive: false,
+        childrens: []
+    },
+];

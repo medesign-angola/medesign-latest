@@ -67,8 +67,47 @@ export class WorkFacade implements IWorkClass{
         
     }
 
-    getWorksByCategories(category: string): Observable<IWork[]> {
-        return of([]);
+    getWorksByCategories(categorySlug: string, subCategorySlug?: string): Observable<IWork[]> {
+        let _filteredWorks: BehaviorSubject<IWork[]> = new BehaviorSubject<IWork[]> ([]);
+
+        this.getApiFetchedWorks().subscribe((actualWorks: IWork[]) => {
+           let filteredByCategorySlug = actualWorks.filter((work: IWork) => {
+                let workArea = work.areas.find((workByArea) => workByArea.slug === categorySlug);
+                if(workArea){
+
+                    if(subCategorySlug){
+                        let areaChildren = workArea.areaChildrens?.find((children) => children.slug === subCategorySlug);
+                        if(areaChildren){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+
+            _filteredWorks.next(filteredByCategorySlug);
+
+        });
+
+        return _filteredWorks;
+    }
+
+    getWorkByClientNameSlug(clientNameSlug: string): Observable<IWork[]>{
+        let _filteredWorks: BehaviorSubject<IWork[]> = new BehaviorSubject<IWork[]>([]);
+        this.getApiFetchedWorks().subscribe({
+            next: (actualWorks: IWork[]) => {
+                let filteredByNameSlug: IWork[] = [];
+                filteredByNameSlug = actualWorks.filter((work: IWork) => work.clientNameSlug === clientNameSlug);
+                
+                _filteredWorks.next(filteredByNameSlug);
+            }
+        });
+        return _filteredWorks;
     }
     
 }

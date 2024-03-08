@@ -1,0 +1,19 @@
+<div class="module-container">
+
+    <div class="hero-section">
+        <md-hero
+        [heroCoverImage]="(this.theWork && this.theWork.coverImagePath) ? this.theWork.coverImagePath : this.heroCoverImageEnum.WORK"
+        />
+    </div>
+    <div class="details-section" #detailsSectionElementRef>
+        <md-details
+        [theWork]="this.theWork"
+        />
+    </div>
+    <div class="preview-section pb-28">
+        <md-preview
+        [theWork]="this.theWork"
+        />
+    </div>
+
+</div>

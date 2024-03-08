@@ -1,53 +1,66 @@
 <div class="cards-container"
 >
-    @defer (when (this.works.length > 0)) {
-        <div class="cards-scroller w-full h-full flex flex-wrap justify-start items-stretch"
-        [style.gap.px]="cardsGap"
-        >
-            @for (work of this.works; track work.id) {
-                <!-- xl:max-w-[582px] -->
-                <div class="card relative appear-softly rounded-2xl overflow-hidden"
-                [ngClass]="this.cardWidth"
-                >
-                <!-- [ngClass]="this.class" -->
-                    <img src="{{ work.imagePath }}" class="w-full h-full object-cover object-center" alt="">
-                    <div class="details z-[2] absolute px-4 xl:px-6 pb-4 xl:pb-6 top-0 left-0 w-full h-full flex flex-col justify-end items-start">
-                        @if (this.showFloatedLabel) {
-                            <div class="floatedLabel p-1 absolute top-4 xl:top-5 left-4 xl:left-5 bg-white w-fit rounded-full mb-6 overflow-hidden gap-2 justify-start items-center"
-                            [ngClass]="{ 'flex xl:hidden': this.cardType === 'mixed'}"
-                            >
-                                <div class="client-name">
-                                    <p class="p-2 text-white font-medium rounded-full"
-                                    [style.backgroundColor]="work.highlightColor"
-                                    >{{ work.clientName }}</p>
+    @defer (when (!(this.loaderService.getLoading(this.pageSectionEnum.WORKS) | async))) {
+        @if (this.works.length > 0) {
+            <div class="cards-scroller w-full h-full flex flex-wrap justify-start items-stretch"
+            [style.gap.px]="cardsGap"
+            >
+                @for (work of this.works; track work.id) {
+                    <!-- xl:max-w-[582px] -->
+                    <div class="card relative appear-softly rounded-2xl overflow-hidden"
+                    [ngClass]="this.cardWidth"
+                    >
+                        <a
+                        [routerLink]="['/work/' + work.clientNameSlug]"
+                        [queryParams]="{ scope: undefined, activeScope: work.areas[0].slug, children: undefined }"
+                        [queryParamsHandling]="'merge'"
+                        >
+                            <img src="{{ work.imagePath }}" class="w-full h-full object-cover object-center" alt="">
+                            <div class="details z-[2] absolute px-4 xl:px-6 pb-4 xl:pb-6 top-0 left-0 w-full h-full flex flex-col justify-end items-start">
+                                @if (this.showFloatedLabel) {
+                                    <div class="floatedLabel p-1 absolute top-4 xl:top-5 left-4 xl:left-5 bg-white w-fit rounded-full mb-6 overflow-hidden gap-2 justify-start items-center"
+                                    [ngClass]="{ 'flex xl:hidden': this.cardType === 'mixed'}"
+                                    >
+                                        <div class="client-name">
+                                            <p class="p-2 text-white font-medium rounded-full"
+                                            [style.backgroundColor]="work.highlightColor"
+                                            >{{ work.clientName }}</p>
+                                        </div>
+                                    </div>
+                                }
+                                @if (this.showFloatedDescription) {
+                                    <div class="description bg-white w-full rounded-full mb-6 overflow-hidden hidden xl:flex gap-2 justify-start items-center p-2 ">
+                                        <div class="client-name">
+                                            <p class="p-2 text-white font-medium rounded-full"
+                                            [style.backgroundColor]="work.highlightColor"
+                                            >{{ work.clientName }}</p>
+                                        </div>
+                                        <div class="content p-2">
+                                            <p class="limit-text-lines one-line text-[#030303]/70 max-w-[280px]">{{ work.description }}</p>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="areas-chip flex flex-wrap gap-2">
+                                    @for (area of work.areas; track area.id) {
+                                        <div class="area py-1 px-3 rounded-full border-[1.5px] border-white/20 bg-[rgba(3,3,3,20%)] backdrop-blur-[15px]">
+                                            <p class="text-white text-sm font-medium">
+                                                {{ area.name }}
+                                            </p>
+                                        </div>
+                                    } @empty {}
                                 </div>
                             </div>
-                        }
-                        @if (this.showFloatedDescription) {
-                            <div class="description bg-white w-full rounded-full mb-6 overflow-hidden hidden xl:flex gap-2 justify-start items-center p-2 ">
-                                <div class="client-name">
-                                    <p class="p-2 text-white font-medium rounded-full"
-                                    [style.backgroundColor]="work.highlightColor"
-                                    >{{ work.clientName }}</p>
-                                </div>
-                                <div class="content p-2">
-                                    <p class="limit-text-lines one-line text-[#030303]/70 max-w-[280px]">{{ work.description }}</p>
-                                </div>
-                            </div>
-                        }
-                        <div class="areas-ship flex flex-wrap gap-2">
-                            @for (area of work.areas; track area.id) {
-                                <div class="area py-1 px-3 rounded-full border-[1.5px] border-white/20 bg-[rgba(3,3,3,20%)] backdrop-blur-[15px]">
-                                    <p class="text-white text-sm font-medium">
-                                        {{ area.name }}
-                                    </p>
-                                </div>
-                            } @empty {}
-                        </div>
+                        </a>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        } @else {
+            <div class="empty">
+                <p class="font-medium text-primary">
+                    Sem trabalhos a serem exibidos
+                </p>
+            </div>
+        }
 
     } @placeholder {
         <div class="cards-scroller-ph w-full h-full flex flex-wrap justify-start items-stretch"

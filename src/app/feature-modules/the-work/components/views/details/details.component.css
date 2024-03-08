@@ -1,0 +1,12 @@
+.workScopes .chips .chip a{
+    background-color: var(--primary-color);
+    opacity: 0.4;
+    border: 1px solid var(--primary-color);
+    text-align: center;
+    transition: .3s;
+    color: #808080;
+}
+.workScopes .chips .chip.active a{
+    opacity: 1 !important;
+    color: #fff;
+}

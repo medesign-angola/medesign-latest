@@ -1,7 +1,14 @@
+interface IPostSubCategory{
+    id: string | number,
+    name: string,
+    slug: string,
+}
+
 interface IPostCategory{
     id: string | number,
     name: string,
-    slug: string
+    slug: string,
+    subcategories: IPostSubCategory[]
 }
 
 export interface IPost{

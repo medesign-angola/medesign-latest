@@ -1,10 +1,14 @@
 <div class="module-container">
 
     <div class="hero-section">
-        <md-hero />
+        <md-hero
+        [heroCoverImage]="this.heroCoverImageEnum.WORKS"
+        />
     </div>
-    <div class="display-sectionn mb-28">
+    <div class="display-section mb-28" #displaySectionElementRef>
         <works-display
+        (changeScopeEventEmitter)="this.changeScopeEventHandler($event)"
+        (changeCategoryDropdownStatusEventEmitter)="this.changeCategoryVisibilityEventHandler($event)"
         [categories]="this.categories"
         [works]="this.works"
         />

@@ -1,0 +1,9 @@
+<div class="hero-content h-[31.25rem] max-h-[42rem] relative">
+    <div class="section-cover w-full h-full">
+        @if(this.loaderService.getLoading(this.pageSectionEnum.WORK) | async){
+            <div class="w-full h-full placeholder"></div>
+        }@else{
+            <img [src]="this.heroCoverImage" class="appear-softly w-full h-full object-cover object-center" alt="">
+        }
+    </div>
+</div>
