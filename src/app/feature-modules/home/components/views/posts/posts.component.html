@@ -13,7 +13,10 @@
     </div>
 
     <div class="see-more flex justify-center items-center">
-        <button [routerLink]="['/news']" routerLinkActive="router-link-active"  class="bg-white text-black px-6 py-3 rounded-full flex gap-x-2 justify-center items-center border-[1.5px] border-primary">
+        <button
+        [routerLink]="['/news']"
+        [queryParams]="{ scope: 'all' }"
+        class="bg-white text-black px-6 py-3 rounded-full flex gap-x-2 justify-center items-center border-[1.5px] border-primary">
             <span class="font-semibold text-lg">
                 Mais Publicações
             </span>

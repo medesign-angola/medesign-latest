@@ -3,9 +3,12 @@
   (siteHeaderHeight)="setHeaderHeight($event)"
   />
 </div>
+
 <div class="pages-content" [style.marginTop.px]="this.headerHeight$ | async">
   <router-outlet></router-outlet>
 </div>
+
+<!-- <md-gallery /> -->
 
 <footer class="bg-black text-white pt-0 pb-10">
   <div class="limited-container">

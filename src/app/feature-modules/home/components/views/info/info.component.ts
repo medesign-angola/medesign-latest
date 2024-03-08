@@ -16,10 +16,10 @@ export class InfoComponent implements OnInit, AfterViewInit {
   VISION_INDEX: number = 0;
   MISSION_INDEX: number = 1;
   VALUES_INDEX: number = 2;
-  @ViewChild('shipsScroller') shipsScroller!: ElementRef<HTMLElement>;
-  @ViewChild('visionShip') visionShip!: ElementRef<HTMLElement>;
-  @ViewChild('missionShip') missionShip!: ElementRef<HTMLElement>;
-  @ViewChild('valuesShip') valuesShip!: ElementRef<HTMLElement>;
+  @ViewChild('chipsScroller') chipsScroller!: ElementRef<HTMLElement>;
+  @ViewChild('visionChip') visionChip!: ElementRef<HTMLElement>;
+  @ViewChild('missionChip') missionChip!: ElementRef<HTMLElement>;
+  @ViewChild('valuesChip') valuesChip!: ElementRef<HTMLElement>;
 
   presentations: PresentationalInterface[] = [
     {
@@ -43,11 +43,11 @@ export class InfoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-   this.visionShip.nativeElement.addEventListener('click', () => {
-    this.shipsScroller.nativeElement.scrollTo(0, 0);
+   this.visionChip.nativeElement.addEventListener('click', () => {
+    this.chipsScroller.nativeElement.scrollTo(0, 0);
    });
-   this.valuesShip.nativeElement.addEventListener('click', () => {
-    this.shipsScroller.nativeElement.scrollTo(this.valuesShip.nativeElement.offsetLeft, 0);
+   this.valuesChip.nativeElement.addEventListener('click', () => {
+    this.chipsScroller.nativeElement.scrollTo(this.valuesChip.nativeElement.offsetLeft, 0);
    });
   }
 

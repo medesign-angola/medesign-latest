@@ -12,32 +12,32 @@
         <div class="content mt-14 flex flex-col xl:flex-row-reverse xl:justify-end xl:gap-x-4">
             <div
             class="scroller mb-8 xl:h-max xl:py-4 xl:px-3 overflow-x-auto xl:overflow-x-visible px-5 xl:rounded-2xl xl:bg-[rgba(16,19,19,0.80)] xl:border-[1.5px] xl:border-[#171D1F]"
-            #shipsScroller
+            #chipsScroller
             >
-                <div class="ships flex gap-2 xl:flex-col justify-startv md:justify-center md:w-full xl:w-auto xl:justify-start items-center xl:items-start w-max">
+                <div class="chips flex gap-2 xl:flex-col justify-startv md:justify-center md:w-full xl:w-auto xl:justify-start items-center xl:items-start w-max">
                     <div
                     (click)="changeActiveData(VISION_INDEX)"
-                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    class="chip text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[VISION_INDEX].active }"
-                    #visionShip
+                    #visionChip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossa Visão
                     </div>
                     <div
                     (click)="changeActiveData(MISSION_INDEX)"
-                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    class="chip text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[MISSION_INDEX].active }"
-                    #missionShip
+                    #missionChip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossa Missão
                     </div>
                     <div
                     (click)="changeActiveData(VALUES_INDEX)"
-                    class="ship text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
+                    class="chip text-white/40 cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-[rgba(16,19,19,0.80)] border-[1.5px] border-[#171D1F] xl:bg-transparent xl:border-none"
                     [ngClass]="{ 'active': this.presentations[VALUES_INDEX].active }"
-                    #valuesShip
+                    #valuesChip
                     >
                         <div class="lg-dot w-2 h-2 bg-white/20 rounded-full"></div>
                         Nossos Valores

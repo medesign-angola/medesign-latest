@@ -1,4 +1,4 @@
-<div class="header-container w-full bg-primary p-5" #siteHeader>
+<div class="header-container w-full bg-primary py-5" #siteHeader>
     <div class="limited-container flex justify-between items-center">
         <div class="logo cursor-pointer">
             <logo [routerLink]="['/']" />
@@ -22,13 +22,19 @@
                                 <a routerLink="" class="text-base">Me Design</a>
                             </li>
                             <li class="">
-                                <a routerLink="" class="text-base">Portfólio</a>
+                                <a
+                                [routerLink]="['/works']"
+                                [queryParams]="{ scope: 'all' }"
+                                class="text-base">Portfólio</a>
                             </li>
                             <li class="">
                                 <a routerLink="" class="text-base">Clientes</a>
                             </li>
                             <li class="">
-                                <a routerLink="" class="text-base">Conteúdos</a>
+                                <a
+                                [routerLink]="['/news']"
+                                [queryParams]="{ scope: 'all' }"
+                                class="text-base">Conteúdos</a>
                             </li>
                         </ul>
                     </nav>

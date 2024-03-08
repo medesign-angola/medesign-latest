@@ -1,10 +1,10 @@
 .hero-info-section-image .overlay{
     background: linear-gradient(180deg, rgba(3, 3, 3, 0.00) 0%, #030303 100%);
 }
-.ship.active{
+.chip.active{
     color: #fff !important;
 }
-.ship.active .lg-dot{
+.chip.active .lg-dot{
     background-color: hsl(0, 0%, 100%) !important;
 }
 .info-cards .card{

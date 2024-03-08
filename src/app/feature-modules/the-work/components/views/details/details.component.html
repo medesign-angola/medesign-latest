@@ -1,0 +1,153 @@
+<div class="details-section py-16">
+    <div class="limited-container">
+        <div class="section-content flex justify-start gap-x-28 items-start">
+
+            <div class="col xl:max-w-[39.5rem]">
+                <div class="main-title mb-6">
+                    <h1 class="text-primary text-[2.813rem] leading-[3.313rem] font-medium tracking-[-0.9px]">
+                        Somos dedicados a converter ideias em resultados tangíveis.
+                    </h1>
+                </div>
+                <div class="description xl:max-w-[25.938rem]">
+                    <p class="text-lg text-primary/70 font-medium tracking-[-0.36px]">
+                        Responsáveis e atenciosos por cada detalhe, nossa missão é impulsionar a inovação, transformando ideias em soluções valiosas.
+                    </p>
+                </div>
+                <div class="optional-details mt-4 flex flex-wrap gap-y-3 gap-x-5"
+                *ngIf="this.hasOptionalInfo"
+                >
+                    @if (this.laoderService.getLoading(this.pageSectionEnum.WORK) | async) {
+                        <div class="link">
+                            <div class="title relative">
+                                <h1 class="text-base placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                    A carregar placeholder...
+                                </h1>
+                            </div>
+                            <div class="content my-1 relative">
+                                <h1 class="text-base placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                    A carregar placeholder...
+                                </h1>
+                            </div>
+                        </div>
+                    } @else {
+                        @for (item of this.optionalInfo; track $index) {
+                            <div class="link appear-softly">
+                                <div class="title">
+                                    <h4 class="font-semibold text-base text-primary">
+                                        {{ item.name }}
+                                    </h4>
+                                </div>
+                                <div class="content my-1">
+                                    <a
+                                    class="text-[#808080] text-base"
+                                    href="{{ item.value }}" target="_blank" rel="noopener noreferrer">
+                                        {{ item.value }}
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col">
+                <div class="work-details flex gap-x-12 justify-between items-stretch">
+
+                    <div class="exececutionYearRange">
+                        <div class="title mb-3">
+                            <h4 class="font-semibold text-base text-primary">
+                                Data de Execução
+                            </h4>
+                        </div>
+                        <div class="content relative">
+                            @if (this.laoderService.getLoading(this.pageSectionEnum.WORK) | async) {
+                                <h1 class="text-base placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                    A carregar...
+                                </h1>
+                            } @else {
+                                <p class="text-[#808080] text-base appear-softly">
+                                    {{ (this.theWork && this.theWork.executionYearRange) ? this.theWork.executionYearRange : 'Não definido' }}
+                                </p>
+                            }
+                        </div>
+                    </div>
+                    <div class="segment">
+                        <div class="title mb-3">
+                            <h4 class="font-semibold text-base text-primary">
+                                Seguimento
+                            </h4>
+                        </div>
+                        <div class="content relative">
+                            @if (this.laoderService.getLoading(this.pageSectionEnum.WORK) | async) {
+                                <h1 class="text-base placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                    A carregar...
+                                </h1>
+                            } @else {
+                                <p class="text-[#808080] text-base appear-softly">
+                                    {{ (this.theWork && this.theWork.segment) ? this.theWork.segment : 'Não definido' }}
+                                </p>
+                            }
+                        </div>
+                    </div>
+                    <div class="client">
+                        <div class="title mb-3">
+                            <h4 class="font-semibold text-base text-primary">
+                                Cliente
+                            </h4>
+                        </div>
+                        <div class="content relative">
+                            @if (this.laoderService.getLoading(this.pageSectionEnum.WORK) | async) {
+                                <h1 class="text-base placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                                    A carregar...
+                                </h1>
+                            } @else {
+                                <p class="text-[#808080] text-base appear-softly">
+                                    {{ (this.theWork && this.theWork.clientName) ? this.theWork.clientName : 'Não definido' }}
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+                <div class="workScopes mt-8">
+                    <div class="chips flex gap-3 flex-wrap">
+
+                        @if(this.laoderService.getLoading(this.pageSectionEnum.WORK) | async){
+
+                            @for (placeholder of [0,1,2]; track $index) {
+                                <div class="chip-placeholder relative"
+                                >
+                                    <a
+                                    class="block px-6 relative overflow-hidden py-3 rounded-full text-lg tracking-[-0.36px] font-semibold"
+                                    >
+                                        <div class="placeholder"></div>
+                                        {{ 'A carregar...' }}
+                                    </a>
+                                </div>
+                            }
+
+                        }@else{
+                            @if (this.theWork && this.theWork.areas) {
+                                @for (area of this.theWork.areas; track $index) {
+                                    <div class="chip appear-softly"
+                                    [ngClass]="{ 'active': area.slug === this.theScope}"
+                                    >
+                                        <a
+                                        class="block px-6 py-3 rounded-full text-lg tracking-[-0.36px] font-semibold"
+                                        [routerLink]="['/work/' + this.theWork.clientNameSlug]"
+                                        [queryParams]="{ activeScope: area.slug}"
+                                        [queryParamsHandling]="'merge'"
+                                        >
+                                            {{ area.name }}
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

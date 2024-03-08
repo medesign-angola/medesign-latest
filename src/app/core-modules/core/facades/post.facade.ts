@@ -1,5 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { ApiService } from "@core/api/api.service";
+import { ICategory } from "@core/interfaces/categories.interface";
 import { IPostClass } from "@core/interfaces/class/ipost.class";
 import { IPost } from "@core/interfaces/post.interface";
 import { BehaviorSubject, Observable, of } from "rxjs";
@@ -18,16 +19,50 @@ export class PostFacade implements IPostClass{
 
     protected posts$: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
     protected limitedPostsPages$: BehaviorSubject<ILimitedPostPages> = new BehaviorSubject<ILimitedPostPages>({});
+    protected _postCategories: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
+
+    constructor() {
+        this.setApiFetchPostCategories();
+    }
+
+    private setApiFetchPostCategories(): Observable<ICategory[]>{
+
+        if(this._postCategories.getValue().length === 0){
+            this.apiService.getPostCategories().subscribe({
+                next: (incomingCategories: ICategory[]) => {
+                    this._postCategories.next(incomingCategories);
+                }
+            });
+        }
+        return this._postCategories;
+    }
+
+    getPostCategories(): Observable<ICategory[]>{
+        return this._postCategories;
+    }
+
+    getApiFetchedPosts(): Observable<IPost[]>{
+        if(this.posts$.getValue().length === 0)
+            this.apiService.getPosts().subscribe({
+                next: (incomingPosts: IPost[]) => {
+                    this.posts$.next(incomingPosts);
+                }
+            });
+
+        return this.posts$;
+    }
 
     getLimitedPosts(pageSection: string, limit: number, page: number = 1, offset: number = 1): Observable<IPost[]>{
         let limitedPosts$: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
         let limitedPosts: IPost[] = [];
 
         if(!this.limitedPostsPages$.getValue()[pageSection]){
-            this.apiService.getPosts().subscribe({
+            this.getApiFetchedPosts().subscribe({
                 next: (incoming: IPost[]) => {
-                    
-                    for (let index = 0; index < incoming.length; index++) {
+
+                    let dynamicLimit = limit ?? incoming.length;
+
+                    for (let index = 0; index < dynamicLimit; index++) {
                         if(incoming[index])
                             limitedPosts.push(incoming[index]);
                     }
@@ -54,9 +89,35 @@ export class PostFacade implements IPostClass{
         
         return this.posts$;
     }
-    
-    postsByCategoryId(categoryId: number): Observable<IPost[]> {
-        return of([]);
-    };
+
+    getPostsByCategories(categorySlug: string, subCategorySlug?: string): Observable<IPost[]> {
+        let _filteredPosts: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]> ([]);
+
+        this.getApiFetchedPosts().subscribe((actualPosts: IPost[]) => {
+           let filteredByCategorySlug = actualPosts.filter((post: IPost) => {
+                let postCategory = post.categories.find((postByCategory) => postByCategory.slug === categorySlug);
+                if(postCategory){
+
+                    if(subCategorySlug){
+                        let areaChildren = postCategory.subcategories?.find((children) => children.slug === subCategorySlug);
+                        if(areaChildren){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+
+            _filteredPosts.next(filteredByCategorySlug);
+
+        });
+
+        return _filteredPosts;
+    }
 
 }

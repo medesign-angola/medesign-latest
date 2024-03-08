@@ -1,0 +1,33 @@
+
+<div class="gallery-container">
+    <div class="gallery-cover fixed top-0 left-0 z-[4300] w-full h-full bg-black/60"></div>
+    <div class="controls absolute top-0 z-[4301] w-full h-full limited-container left-[50%] -translate-x-[50%] text-white flex justify-between items-center">
+        <div class="prev"
+        (click)="prev()"
+        >
+            <button>Anterior</button>
+        </div>
+        <div class="next"
+        (click)="next()"
+        >
+            <button>Próximo</button>
+        </div>
+    </div>
+    <div class="gallery-body z-[4301] fixed top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] bg-white max-h-[90vh] overflow-x-auto flex overflow-y-auto no-scroll">
+        <!-- <div class="image w-full h-full">
+            <img src="assets/images/works/odonto-clinic-ft-01.png" class="w-full h-full box-border object-center" alt="">
+        </div> -->
+        @for (item of this.galleryItems; track $index) {
+            <div class="image-owner flex bg-white"
+            [ngClass]="{
+                'w-full': this.activeIndex === $index,
+                'w-0': this.activeIndex !== $index,
+            }"
+            >
+                <div class="image w-full h-full">
+                    <img src="{{ item }}" class="w-full h-full box-border object-cover" alt="">
+                </div>
+            </div>
+        }
+    </div>
+</div>
