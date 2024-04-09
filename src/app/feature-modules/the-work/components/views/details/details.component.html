@@ -1,17 +1,23 @@
 <div class="details-section py-16">
     <div class="limited-container">
-        <div class="section-content flex justify-start gap-x-28 items-start">
+        <div class="section-content flex flex-col lg:flex-row justify-start gap-x-28 items-start">
 
             <div class="col xl:max-w-[39.5rem]">
                 <div class="main-title mb-6">
-                    <h1 class="text-primary text-[2.813rem] leading-[3.313rem] font-medium tracking-[-0.9px]">
+                    <h1 class="text-primary text-[2rem] lg:text-[2.813rem] leading-[2.5rem] lg:leading-[3.313rem] font-medium tracking-[-0.64px] lg:tracking-[-0.9px]">
                         Somos dedicados a converter ideias em resultados tangíveis.
                     </h1>
                 </div>
-                <div class="description xl:max-w-[25.938rem]">
-                    <p class="text-lg text-primary/70 font-medium tracking-[-0.36px]">
-                        Responsáveis e atenciosos por cada detalhe, nossa missão é impulsionar a inovação, transformando ideias em soluções valiosas.
-                    </p>
+                <div class="description pr-2 lg:pr-0 xl:max-w-[25.938rem]">
+                    @if (this.laoderService.getLoading(this.pageSectionEnum.WORK) | async) {
+                        <p class="text-lg placeholder !w-fit !h-max !relative text-transparent rounded-lg">
+                            A carregar as informações descrição...
+                        </p>
+                    } @else {
+                        <p class="text-base lg:text-lg text-primary/70 font-medium tracking-[-0.32px] lg:tracking-[-0.36px]">
+                            {{ (this.theWork.description) ? this.theWork.description : '' }}
+                        </p>
+                    }
                 </div>
                 <div class="optional-details mt-4 flex flex-wrap gap-y-3 gap-x-5"
                 *ngIf="this.hasOptionalInfo"
@@ -49,8 +55,8 @@
                     }
                 </div>
             </div>
-            <div class="col">
-                <div class="work-details flex gap-x-12 justify-between items-stretch">
+            <div class="col mt-6 lg:mt-0">
+                <div class="work-details flex flex-wrap lg:flex-nowrap gap-x-12 gap-y-6  justify-start lg:justify-between items-stretch">
 
                     <div class="exececutionYearRange">
                         <div class="title mb-3">
@@ -117,7 +123,7 @@
                                 <div class="chip-placeholder relative"
                                 >
                                     <a
-                                    class="block px-6 relative overflow-hidden py-3 rounded-full text-lg tracking-[-0.36px] font-semibold"
+                                    class="block px-4 py-2 lg:px-6 lg:py-3 relative overflow-hidden rounded-full text-base lg:text-lg tracking-[-0.36px] font-semibold"
                                     >
                                         <div class="placeholder"></div>
                                         {{ 'A carregar...' }}
@@ -132,7 +138,7 @@
                                     [ngClass]="{ 'active': area.slug === this.theScope}"
                                     >
                                         <a
-                                        class="block px-6 py-3 rounded-full text-lg tracking-[-0.36px] font-semibold"
+                                        class="block px-4 py-2 lg:px-6 lg:py-3 rounded-full text-base lg:text-lg tracking-[-0.36px] font-semibold"
                                         [routerLink]="['/work/' + this.theWork.clientNameSlug]"
                                         [queryParams]="{ activeScope: area.slug}"
                                         [queryParamsHandling]="'merge'"

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThePostComponent } from './the-post.component';
+import { ThePostComponent } from './components/containers/the-post.component';
 
 const routes: Routes = [{ path: '', component: ThePostComponent }];
 

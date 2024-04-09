@@ -107,9 +107,11 @@ export class BlogComponent implements OnInit {
     this.deactivateAllOthers();
     if(queryChildren){
       
-      let selectedChildrenScopeIndex = this.categories[selectedScopeIndex].childrens.findIndex((children: ICategoryChildren) => children.slug === queryChildren);
-      if(this.categories[selectedScopeIndex].childrens[selectedChildrenScopeIndex])
-        this.categories[selectedScopeIndex].childrens[selectedChildrenScopeIndex].isActive = true;
+      if(this.categories[selectedScopeIndex].childrens){
+        let selectedChildrenScopeIndex = this.categories[selectedScopeIndex].childrens.findIndex((children: ICategoryChildren) => children.slug === queryChildren);
+        if(this.categories[selectedScopeIndex].childrens[selectedChildrenScopeIndex])
+          this.categories[selectedScopeIndex].childrens[selectedChildrenScopeIndex].isActive = true;
+      }
     
     }
 

@@ -3,7 +3,7 @@ import { ApiService } from "@core/api/api.service";
 import { ICategory } from "@core/interfaces/categories.interface";
 import { IWorkClass } from "@core/interfaces/class/iwork.class";
 import { IWork } from "@core/interfaces/work.interface";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, map, of, tap } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -47,23 +47,37 @@ export class WorkFacade implements IWorkClass{
         return this._workCategories;
     }
 
-    getWorks(limit?: number, offset: number = 0): Observable<IWork[]> {
+    getWorks(limit?: number, offset: number = 0, wantedFieldKey?: keyof IWork, wantedFieldValue?: any): Observable<IWork[]> {
 
-        if(limit){
-
-            let limited: IWork[] = [];
-            this.getApiFetchedWorks().subscribe((allWorks: IWork[]) => {
-                for (let index = offset; index < limit; index++) {
-                    if(allWorks[index]){
-                        limited.push(allWorks[index]);
+        let postsToReturn: BehaviorSubject<IWork[]> = new BehaviorSubject<IWork[]>([]);
+        this.getApiFetchedWorks()
+            .pipe(
+                map(incomingWorks => {
+                    if(wantedFieldKey && wantedFieldValue && incomingWorks && incomingWorks.length > 0){
+                        return incomingWorks.filter(element => element.hasOwnProperty(wantedFieldKey) && element[wantedFieldKey] === wantedFieldValue);
+                    }else{
+                        return incomingWorks
                     }
-                }
-            });
-            return of(limited);
+                }),
+            )
+            .subscribe((allWorks: IWork[]) => {
+                if(limit){
 
-        }else{
-            return this.getApiFetchedWorks();
-        }
+                    let limited: IWork[] = [];
+                    for (let index = offset; index < limit; index++) {
+                        if(allWorks[index]){
+                            limited.push(allWorks[index]);
+                        }
+                    }
+                    
+                    postsToReturn.next(limited);
+                }else{
+                    postsToReturn.next(allWorks);
+                }
+
+            });
+
+        return postsToReturn;
         
     }
 

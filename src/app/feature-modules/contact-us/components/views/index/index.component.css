@@ -1,0 +1,8 @@
+.switch-container .chip{
+    transition: .3s;
+    color: #999;
+}
+.switch-container .chip.active{
+    color: black;
+    background-color: white;
+}

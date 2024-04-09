@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { PreviewEnum } from '@core/Enums/preview.enum';
-import { IWorkAreaPreview } from '@core/interfaces/work.interface';
+import { IWorkArea, IWorkAreaPreview } from '@core/interfaces/work.interface';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -15,6 +15,7 @@ export class PreviewLayoutComponent implements OnInit, OnChanges {
 
   @Input() thePreview!: IWorkAreaPreview;
   @Input() isLoading$!: boolean | null;
+  @Input() thePretendedArea!: IWorkArea[];
   @Input() hasPreviewImages: boolean = false;
   previewEnum = PreviewEnum;
 
@@ -28,7 +29,7 @@ export class PreviewLayoutComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
+    
   }
 
   previewImage(imagePath: string): void{
@@ -53,9 +54,21 @@ export class PreviewLayoutComponent implements OnInit, OnChanges {
     return this.thePreview.images[0].imagePath;
   }
 
+  get getTopItems(){
+    return this.thePreview.images.filter(item => item.position === 'top');
+  }
+
   get getLastItem(){
     let lenght = this.thePreview.images.length;
     return this.thePreview.images[lenght - 1].imagePath;
+  }
+
+  get getBottomItems(){
+    return this.thePreview.images.filter(item => item.position === 'bottom');
+  }
+
+  get getBodyItems(){
+    return this.thePreview.images.filter(item => item.position === 'body');
   }
 
   get getItemsWithoutFirstAndLast() {

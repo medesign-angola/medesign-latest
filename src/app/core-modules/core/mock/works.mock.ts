@@ -11,6 +11,7 @@ export const WORKS: IWork[] = [
       coverImagePath: 'assets/images/works/logo-educa-cover.png',
       description: 'Responsáveis e atenciosos por cada.',
       highlightColor: '#184A8C',
+      appearOnHomePage: true,
       areas: [
         {
           id: 1,
@@ -79,6 +80,7 @@ export const WORKS: IWork[] = [
       coverImagePath: 'assets/images/works/odonto-clinic-cover.png',
       description: 'Responsáveis e atenciosos por cada.',
       highlightColor: '#387C7E',
+      appearOnHomePage: true,
       areas: [
         {
           id: 1,
@@ -90,16 +92,20 @@ export const WORKS: IWork[] = [
               layout:  'graphic-design',
               images: [
                 {
-                  imagePath: 'assets/images/works/odonto-clinic-ft-01.png'
+                  imagePath: 'assets/images/works/odonto-clinic-ft-01.png',
+                  position: 'top'
                 },
                 {
-                  imagePath: 'assets/images/works/odonto-clinic-ft-02.png'
+                  imagePath: 'assets/images/works/odonto-clinic-ft-02.png',
+                  position: 'body'
                 },
                 {
-                  imagePath: 'assets/images/works/odonto-clinic-ft-03.png'
+                  imagePath: 'assets/images/works/odonto-clinic-ft-03.png',
+                  position: 'body'
                 },
                 {
-                  imagePath: 'assets/images/works/odonto-clinic-ft-04.png'
+                  imagePath: 'assets/images/works/odonto-clinic-ft-04.png',
+                  position: 'bottom'
                 },
               ]
             }
@@ -127,7 +133,8 @@ export const WORKS: IWork[] = [
               layout:  'web-design',
               images: [
                 {
-                  imagePath: 'assets/images/works/odonto-clinic-web-ft-01.png'
+                  imagePath: 'assets/images/works/odonto-clinic-web-ft-01.png',
+                  position: 'top'
                 },
                 {
                   imagePath: 'assets/images/works/odonto-clinic-web-ft-02.png'
@@ -170,6 +177,7 @@ export const WORKS: IWork[] = [
       executionYearRange: '2022-2023',
       description: 'Responsáveis e atenciosos por cada.',
       highlightColor: '#EF3129',
+      appearOnHomePage: false,
       areas: [
         {
           id: 1,
@@ -210,6 +218,7 @@ export const WORKS: IWork[] = [
       coverImagePath: 'assets/images/works/ubuntu.png',
       description: 'Responsáveis e atenciosos por cada.',
       highlightColor: '#77534F',
+      appearOnHomePage: false,
       areas: [
         {
           id: 1,
@@ -225,6 +234,7 @@ export const WORKS: IWork[] = [
       imagePath: 'assets/images/works/hlm.png',
       description: 'Agência de viagens e Turismo',
       highlightColor: '#f02681',
+      appearOnHomePage: true,
       areas: [
         {
           id: 1,
@@ -252,6 +262,7 @@ export const WORKS: IWork[] = [
       imagePath: 'assets/images/works/ipcom.png',
       description: 'Revenda de soluções a nível de gestão comercial baseadas em Cloud e também pontos de venda móveis, com sistemas Android.',
       highlightColor: '#7a0960',
+      appearOnHomePage: true,
       areas: [
         {
           id: 1,
@@ -279,6 +290,7 @@ export const WORKS: IWork[] = [
       imagePath: 'assets/images/works/farmacia-bar.png',
       description: 'Farmácia Bar, uma jovem iniciativa empreendedora',
       highlightColor: '#b88c2e',
+      appearOnHomePage: false,
       areas: [
         {
           id: 1,
@@ -301,6 +313,7 @@ export const WORKS: IWork[] = [
       imagePath: 'assets/images/works/moco-monte.png',
       description: 'Tecnologias e Sistemas de Informação',
       highlightColor: '#13409c',
+      appearOnHomePage: false,
       areas: [
         {
           id: 1,
@@ -328,6 +341,7 @@ export const WORKS: IWork[] = [
       imagePath: 'assets/images/works/nail-spa.png',
       description: 'Sector de estética',
       highlightColor: '#8c1279',
+      appearOnHomePage: false,
       areas: [
         {
           id: 1,
