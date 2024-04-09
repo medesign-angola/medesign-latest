@@ -38,9 +38,9 @@ export class HomeComponent implements IHomePageClass, OnInit {
     this.metaService.addMetaTags({
       title: 'Me Design Angola',
       description: 'Oferecer soluções práticas e satisfatórias de Web Design, Web Marketing, Design Gráfico e Brand Management',
-      image: 'https://medesign-latest.vercel.app/assets/images/static/coverImage.png',
+      image: 'https://medesign-ao.vercel.app/assets/images/static/coverImage.png',
       // url: 'https://medesign-angola.com',
-      url: 'https://medesign-latest.vercel.app'
+      url: 'https://medesign-ao.vercel.app'
     });
   }
 
@@ -56,10 +56,11 @@ export class HomeComponent implements IHomePageClass, OnInit {
   getServices(): void {
     this.serviceFacade.getServices().subscribe((incoming: IService[]) => this.services = incoming);
   }
+  
   getWorks(): void {
     this.loaderService.setLoading(PageSectionEnum.WORKS, true);
     
-    this.workFacade.getWorks(HomeLimitsEnum.WORKS).subscribe({
+    this.workFacade.getWorks(HomeLimitsEnum.WORKS, undefined, 'appearOnHomePage', true).subscribe({
       next: (incoming: IWork[]) => {
         this.works = incoming
         if(this.works.length > 0){
@@ -72,9 +73,11 @@ export class HomeComponent implements IHomePageClass, OnInit {
     });
 
   }
+
   getClients(): void {
     this.clientFacade.getClients().subscribe((incoming: IClient[]) => this.clients = incoming);
   }
+
   getPosts(): void {
     this.loaderService.setLoading(PageSectionEnum.BLOG, true);
     this.postFacade.getLimitedPosts(PageSectionEnum.HOME, HomeLimitsEnum.POSTS).subscribe({

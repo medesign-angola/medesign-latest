@@ -1,19 +1,20 @@
-interface IWorkAreaOptionalInfo{
+export interface IWorkAreaOptionalInfo{
     name: string,
     value: string
 }
-interface IWorkSubArea{
+export interface IWorkSubArea{
     id: number,
     name: string,
     slug: string
 }
 
-interface IPreviewImages{
-    imagePath: string
+export interface IPreviewImages{
+    imagePath: string,
+    position?: 'top' | 'body' | 'bottom'
 }
 
 export interface IWorkAreaPreview{
-    id: number,
+    id?: number,
     layout: 'graphic-design'      |
             'web-design'          |
             'marketing-digital'   |
@@ -21,7 +22,7 @@ export interface IWorkAreaPreview{
     images: IPreviewImages[]
 }
 
-interface IWorkArea{
+export interface IWorkArea{
     id: number,
     name: string,
     slug: string,
@@ -40,5 +41,6 @@ export interface IWork{
     executionYearRange?: string,
     description: string,
     highlightColor: string,
+    appearOnHomePage: boolean,
     areas: IWorkArea[],
 }

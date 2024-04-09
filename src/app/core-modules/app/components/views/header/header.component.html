@@ -1,14 +1,21 @@
-<div class="header-container w-full bg-primary py-5" #siteHeader>
-    <div class="limited-container flex justify-between items-center">
+<div class="header-container duration-[.6s] w-full bg-primary overflow-hidden" #siteHeader
+[style.height]="this.headerHeight"
+>
+    <div class="limited-container header-top-content py-5 flex justify-between items-center" #headerTopContentElement>
         <div class="logo cursor-pointer">
             <logo [routerLink]="['/']" />
         </div>
         <div class="aside flex gap-8 xl:gap-10 justify-center items-center">
             <div class="menu-items">
                 <div class="menu-icon-for-mobile xl:hidden">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" (click)="this.toggleMenu()" *ngIf="!this.menuMobileVisible">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 8.5H21M3 15.5H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" (click)="this.toggleMenu()" *ngIf="this.menuMobileVisible">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
                 </div>
@@ -16,10 +23,10 @@
                     <nav>
                         <ul class="flex justify-center items-center gap-8">
                             <li class="">
-                                <a routerLink="" class="text-base">Nossas Soluções</a>
+                                <a [routerLink]="['/']" class="text-base">Nossas Soluções</a>
                             </li>
                             <li class="">
-                                <a routerLink="" class="text-base">Me Design</a>
+                                <a [routerLink]="['/']" class="text-base">Me Design</a>
                             </li>
                             <li class="">
                                 <a
@@ -28,7 +35,7 @@
                                 class="text-base">Portfólio</a>
                             </li>
                             <li class="">
-                                <a routerLink="" class="text-base">Clientes</a>
+                                <a [routerLink]="['/']" class="text-base">Clientes</a>
                             </li>
                             <li class="">
                                 <a
@@ -41,18 +48,13 @@
                 </div>
             </div>
             <div class="search-icon flex gap-x-2 items-center justify-center">
-                <div class="input-search rounded-md overflow-hidden"
-                [ngClass]="{ 'max-w-[0px]': !this.expandInput, 'max-w-[150px]': this.expandInput}"
-                >
-                    <input type="text" class="focus:outline-none text-base py-1 w-full px-2 font-medium">
-                </div>
-                <a href="javascript:void(0)" (click)="this.toggleInput()">
-                    @if(this.expandInput) {
+                <a href="javascript:void(0)" (click)="this.toggleSearchPanel()">
+                    @if(this.searchPanelVisible) {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     } @else {
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     }
@@ -60,4 +62,86 @@
             </div>
         </div>
     </div>
+    <div class="menu-mobile-panel relative"
+    [ngClass]="{
+        'opacity-0 h-0': !this.menuMobileVisible,
+        'opacity-1 duration-[.6s] mt-10 h-screen': this.menuMobileVisible
+    }"
+    >
+        <div class="limited-container flex flex-col gap-y-8">
+            <nav>
+                <ul class="flex flex-col gap-y-8">
+                    <li>
+                        <a (click)="this.closeMenu()" class="text-white text-4xl font-medium" [routerLink]="['/']">Nossas Soluções</a>
+                    </li>
+                    <li>
+                        <a (click)="this.closeMenu()" class="text-white text-4xl font-medium" [routerLink]="['/']">Me Design</a>
+                    </li>
+                    <li>
+                        <a (click)="this.closeMenu()" class="text-white text-4xl font-medium"
+                        [routerLink]="['/works']"
+                        [queryParams]="{ scope: 'all' }"
+                        [queryParamsHandling]="'merge'"
+                        >Portfólio</a>
+                    </li>
+                    <li>
+                        <a (click)="this.closeMenu()" class="text-white text-4xl font-medium" [routerLink]="['/']">Clientes</a>
+                    </li>
+                    <li>
+                        <a (click)="this.closeMenu()" class="text-white text-4xl font-medium"
+                        [routerLink]="['/news']"
+                        [queryParams]="{ scope: 'all' }"
+                        [queryParamsHandling]="'merge'"
+                        >Conteúdos</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="social-media">
+                <div class="flex flex-row gap-6">
+                    <a (click)="this.closeMenu()" href="https://www.facebook.com/medesignangola1" target="_blank" class="cursor-pointer">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.8039 0H4.00156C1.79156 0 0 1.795 0 4.00925V18.84C0 21.0542 1.79156 22.8492 4.00156 22.8492H18.8039C21.0139 22.8492 22.8054 21.0542 22.8054 18.84V4.00925C22.8054 1.795 21.0139 0 18.8039 0Z" fill="white"/>
+                        <path d="M12.7467 12.9417H15.7666L16.2412 9.86785H12.7467V8.18775C12.7467 6.91072 13.1632 5.77858 14.3554 5.77858H16.2711V3.09606C15.9344 3.05057 15.2227 2.95117 13.8775 2.95117C11.0685 2.95117 9.4219 4.43753 9.4219 7.82343V9.86869H6.53433V12.9429H9.42148V21.3919C9.99319 21.4774 10.5729 21.5359 11.1673 21.5359C11.7045 21.5359 12.2292 21.4866 12.7467 21.4167V12.9425V12.9417Z" fill="black"/>
+                      </svg>
+                    </a>
+                    <a (click)="this.closeMenu()" href="https://www.linkedin.com/company/me-design-angola" target="_blank" class="cursor-pointer">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.8039 0H4.00156C1.79156 0 0 1.795 0 4.00925V18.84C0 21.0542 1.79156 22.8492 4.00156 22.8492H18.8039C21.0139 22.8492 22.8054 21.0542 22.8054 18.84V4.00925C22.8054 1.795 21.0139 0 18.8039 0Z" fill="white"/>
+                        <path d="M3.64554 7.47643H6.87781V18.4883H3.64554V7.47643ZM5.2518 6.18086H5.23372C4.26938 6.18086 3.64554 5.46064 3.64554 4.56099C3.64554 3.66134 4.28872 2.94238 5.27072 2.94238C6.25271 2.94238 6.85974 3.64197 6.87781 4.56099C6.87781 5.46022 6.25398 6.18086 5.2518 6.18086ZM19.1604 18.4883H15.9281V12.5942C15.9281 11.1702 15.1361 10.199 13.8645 10.199C12.8942 10.199 12.3692 10.8543 12.1144 11.4878C12.0211 11.7144 12.0493 12.3415 12.0493 12.6582V18.4883H8.81701V7.47643H12.0493V9.17085C12.5155 8.4481 13.2453 7.47643 15.1121 7.47643C17.4251 7.47643 19.1595 8.93372 19.1595 12.1882L19.1604 18.4883Z" fill="black"/>
+                      </svg>
+                    </a>
+                    <a (click)="this.closeMenu()" href="https://www.instagram.com/me_design.angola" target="_blank" class="cursor-pointer">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.8039 0H4.00157C1.79156 0 0 1.795 0 4.00925V18.84C0 21.0542 1.79156 22.8492 4.00157 22.8492H18.8039C21.0139 22.8492 22.8054 21.0542 22.8054 18.84V4.00925C22.8054 1.795 21.0139 0 18.8039 0Z" fill="white"/>
+                        <path d="M15.1919 20.4978H7.61374C6.25424 20.4978 4.98303 19.9742 4.03382 19.0236C3.08503 18.073 2.5625 16.7994 2.5625 15.4368V7.84415C2.5625 6.48204 3.08503 5.20838 4.03382 4.25735C4.98261 3.30673 6.25382 2.7832 7.61374 2.7832H15.1919C16.5514 2.7832 17.8226 3.30673 18.7718 4.25735C19.7206 5.20796 20.2431 6.48162 20.2431 7.84415V15.4368C20.2431 16.7989 19.7206 18.0726 18.7718 19.0236C17.823 19.9742 16.5518 20.4978 15.1919 20.4978ZM7.61374 4.04675C6.59096 4.04675 5.63629 4.43888 4.92586 5.15068C4.21542 5.86248 3.82405 6.81899 3.82405 7.84373V15.4364C3.82405 16.4611 4.21542 17.4177 4.92586 18.1295C5.63629 18.8417 6.59096 19.2338 7.61374 19.2338H15.1919C16.2146 19.2338 17.1693 18.8417 17.8798 18.1295C18.5906 17.4172 18.9816 16.4611 18.9816 15.4364V7.84415C18.9816 6.81941 18.5902 5.8629 17.8798 5.1511C17.1693 4.43888 16.2146 4.04718 15.1919 4.04718H7.61374V4.04675Z" fill="#151515"/>
+                        <path d="M15.8228 7.21237C16.1717 7.21237 16.4542 6.92891 16.4542 6.57933C16.4542 6.22975 16.1713 5.94629 15.8228 5.94629C15.4743 5.94629 15.1914 6.22975 15.1914 6.57933C15.1914 6.92891 15.4743 7.21237 15.8228 7.21237Z" fill="#151515"/>
+                        <path d="M11.403 16.0704C8.96611 16.0704 6.98361 14.0837 6.98361 11.6416C6.98361 9.19961 8.96611 7.21289 11.403 7.21289C13.84 7.21289 15.8229 9.19961 15.8229 11.6416C15.8229 14.0837 13.8404 16.0704 11.403 16.0704ZM11.403 8.47686C9.66141 8.47686 8.24474 9.89667 8.24474 11.6421C8.24474 13.3874 9.66141 14.8073 11.403 14.8073C13.1446 14.8073 14.5617 13.3874 14.5617 11.6421C14.5617 9.89667 13.1446 8.47686 11.403 8.47686Z" fill="#151515"/>
+                      </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-panel relative"
+    [ngClass]="{
+        'opacity-0 h-0': !this.searchPanelVisible,
+        'opacity-1 mt-10 duration-[.6s] h-screen': this.searchPanelVisible
+    }"
+    >
+        <div class="limited-container flex flex-col gap-y-8">
+            <div class="search-field">
+                <div class="field-container bg-[#0E1010] rounded-full px-6 flex justify-start items-center gap-x-2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input
+                    type="text"
+                    class="py-3 w-full text-white bg-transparent focus:outline-none placeholder:font-medium placeholder:text-white/40"
+                    placeholder="Pesquisar">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

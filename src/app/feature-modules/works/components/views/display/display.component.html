@@ -1,13 +1,13 @@
-<div class="display-content md:py-12">
+<div class="display-content py-12">
     <div class="limited-container">
-        <div class="content-header flex flex-col md:flex-row justify-between items-center">
+        <div class="content-header flex flex-col md:flex-row justify-between md:items-center">
 
             <div class="main-title">
                 <h1 class=" text-3xl font-medium text-primary">
                     Projectos recentes
                 </h1>
             </div>
-            <div class="search-input min-w-[17.5rem]">
+            <div class="search-input hidden md:block min-w-[17.5rem]">
                 <div class="md:p-3 md:rounded-lg bg-primary/5 overflow-hidden flex gap-2 justify-start items-center">
                     <div class="search-icon">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,10 +27,10 @@
 
         </div>
 
-        <div class="content-body mt-10 flex flex-col lg:flex-row gap-x-8 justify-between items-stretch">
+        <div class="content-body mt-6 flex flex-col lg:flex-row gap-x-8 justify-between items-stretch">
 
             <aside class="categories-navigation lg:min-w-[11rem] lg:max-w-[11rem]">
-                <div class="navigation-container sticky top-[90px] left-0 flex flex-col gap-y-2">
+                <div class="navigation-container hidden lg:flex sticky top-[90px] left-0 flex-col gap-y-2">
 
                     @for (category of this.categories; track category.id) {
                         <div class="navigation-item cursor-pointer block px-3 py-2 rounded-lg"
@@ -72,6 +72,59 @@
 
                     }
 
+                </div>
+                <div class="mobile-navigation-container mb-8 lg:hidden">
+                    <div class="categories-container overflow-x-auto" #categoriesContainer>
+                        <div class="chips flex gap-4 justify-start items-center xl:items-start w-max">
+                            @for (category of this.categories; track category.id) {
+                                <div
+                                class="chip ref-{{ category.slug }} text-[rgba(3,3,3,0.40)] font-medium text-base cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full bg-white"
+                                [ngClass]="{ 'active': category.isActive }"
+                                (click)="clickOncategoryAction(category)"
+                                (click)="scrollIntoView('ref-' + category.slug)"
+                                >
+                                    <div class="lg-dot w-2 h-2 bg-[rgba(3,3,3,0.20)] rounded-full"></div>
+                                    {{ category.name }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @if (this.pretendedCategoryWithChildrens) {
+                        <div class="childrens my-6">
+                            <div class="chips flex flex-wrap gap-2 justify-center items-start xl:items-start w-full">
+                                @for (children of this.pretendedCategoryWithChildrens.childrens; track children.id) {
+                                    <div
+                                    class="chip appear-softly text-[#141414] font-medium text-xs bg-[rgba(20,20,20,0.08)] cursor-pointer flex justify-center items-center gap-2 px-3 py-2 rounded-full"
+                                    [ngClass]="{ 'active': children.isActive }"
+                                    [routerLink]="['/works']"
+                                    [queryParams]="{ scope: this.pretendedCategoryWithChildrens.slug, children: children.slug }"
+                                    (click)="changeScopeEvent()"
+                                    >
+                                        {{ children.name }}
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="search-input w-full mt-12">
+                        <div class="p-3 rounded-lg bg-primary/5 overflow-hidden flex gap-2 justify-start items-center">
+                            <div class="search-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="#030303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="search-input shrink">
+                                <input
+                                type="text"
+                                name="searchWork"
+                                class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
+                                placeholder="Pesquisar notícias"
+                                >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </aside>
             <section class="works lg:w-[69.125rem]">

@@ -37,6 +37,16 @@ export class PostFacade implements IPostClass{
         return this._postCategories;
     }
 
+    
+    getPosts(limit?: number): Observable<IPost[]> {
+        if(this.posts$.getValue().length === 0)
+            this.apiService.getPosts().subscribe({
+                next: (incoming: IPost[]) => this.posts$.next(incoming)
+            });
+        
+        return this.posts$;
+    }
+
     getPostCategories(): Observable<ICategory[]>{
         return this._postCategories;
     }
@@ -76,48 +86,45 @@ export class PostFacade implements IPostClass{
                     return this.limitedPostsPages$;
                 }
             });
+        }else{
+            limitedPosts$.next(this.limitedPostsPages$.getValue()[pageSection]);
         }
 
         return limitedPosts$;
-    }
-
-    getPosts(limit?: number): Observable<IPost[]> {
-        if(this.posts$.getValue().length === 0)
-            this.apiService.getPosts().subscribe({
-                next: (incoming: IPost[]) => this.posts$.next(incoming)
-            });
-        
-        return this.posts$;
     }
 
     getPostsByCategories(categorySlug: string, subCategorySlug?: string): Observable<IPost[]> {
         let _filteredPosts: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]> ([]);
 
         this.getApiFetchedPosts().subscribe((actualPosts: IPost[]) => {
-           let filteredByCategorySlug = actualPosts.filter((post: IPost) => {
-                let postCategory = post.categories.find((postByCategory) => postByCategory.slug === categorySlug);
-                if(postCategory){
+            let filteredByCategorySlug = actualPosts.filter((post: IPost) => {
+                    let postCategory = post.categories.find((postByCategory) => postByCategory.slug === categorySlug);
+                    if(postCategory){
 
-                    if(subCategorySlug){
-                        let areaChildren = postCategory.subcategories?.find((children) => children.slug === subCategorySlug);
-                        if(areaChildren){
-                            return true;
-                        }else{
-                            return false;
+                        if(subCategorySlug){
+                            let areaChildren = postCategory.subcategories?.find((children) => children.slug === subCategorySlug);
+                            if(areaChildren){
+                                return true;
+                            }else{
+                                return false;
+                            }
                         }
+
+                        return true;
+                    }else{
+                        return false;
                     }
+                });
 
-                    return true;
-                }else{
-                    return false;
-                }
-            });
-
-            _filteredPosts.next(filteredByCategorySlug);
+                _filteredPosts.next(filteredByCategorySlug);
 
         });
 
         return _filteredPosts;
+    }
+
+    getPostBySlug(slug: string): Observable<IPost[] | null>{
+        return this.apiService.getPostBySlug(slug);
     }
 
 }

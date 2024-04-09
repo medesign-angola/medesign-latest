@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLATFORM_ID, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from '@core/interfaces/categories.interface';
 import { IWork } from '@core/interfaces/work.interface';
@@ -9,12 +9,14 @@ import { IWork } from '@core/interfaces/work.interface';
   templateUrl: './display.component.html',
   styleUrl: './display.component.css'
 })
-export class DisplayComponent implements OnInit, OnChanges {
+export class DisplayComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: any
   ) {}
+
+  @ViewChild('categoriesContainer') categoriesContainerElement!: ElementRef<HTMLElement>;
 
   @Input() categories: ICategory[] = [];
   @Input() works: IWork[] = [];
@@ -22,6 +24,7 @@ export class DisplayComponent implements OnInit, OnChanges {
   @Output() changeCategoryDropdownStatusEventEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   dropdownMaxHeights: { [key: string]: number } = { }
+  pretendedCategoryWithChildrens: ICategory | undefined;
 
   ngOnInit(): void {
     
@@ -31,7 +34,16 @@ export class DisplayComponent implements OnInit, OnChanges {
     if(isPlatformBrowser(this.platformId)){
       // console.log(this.categories)
       this.categories.forEach((category: ICategory) => {
+        
+        if(category.isActive){
+          this.scrollIntoView(`ref-${ category.slug }`);
+        }
+
         if(category.childrens.length > 0){
+
+          if(category.isActive){
+            this.pretendedCategoryWithChildrens = category;
+          }
           
           let intervalToFetchCategories = setInterval(() => {
 
@@ -56,6 +68,12 @@ export class DisplayComponent implements OnInit, OnChanges {
     }
   }
 
+  ngAfterViewInit(): void {
+    if(isPlatformBrowser(this.platformId)){
+      this.categoriesContainerElement.nativeElement;
+    }
+  }
+
   changeScopeEvent(): void{
     this.changeScopeEventEmitter.emit(true);
   }
@@ -69,10 +87,13 @@ export class DisplayComponent implements OnInit, OnChanges {
     if(category.childrens.length > 0){
 
       this.dropdownEventEmitter(category.id);
+      this.pretendedCategoryWithChildrens = category;
 
     }else{
       
       this.changeScopeEvent();
+      this.pretendedCategoryWithChildrens = undefined;
+
       this.router.navigate(['/works'], {
         queryParams: { scope: category.slug, children: undefined },
         queryParamsHandling: 'merge'
@@ -80,6 +101,26 @@ export class DisplayComponent implements OnInit, OnChanges {
 
     }
 
+  }
+
+  scrollIntoView(ref: string): void{
+    if(isPlatformBrowser(this.platformId)){
+
+      let chipElement = document.querySelector(`.chip.${ ref }`) as HTMLElement;
+
+      if (chipElement && this.categoriesContainerElement) {
+        const containerWidth = this.categoriesContainerElement.nativeElement.offsetWidth;
+        const chipElementWidth = chipElement.offsetWidth;
+        const chipElementOffset = chipElement.offsetLeft;
+    
+        const scrollPosition = chipElementOffset - (containerWidth / 2) + (chipElementWidth / 2);
+    
+        this.categoriesContainerElement.nativeElement.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+      }
+    }
   }
 
 }

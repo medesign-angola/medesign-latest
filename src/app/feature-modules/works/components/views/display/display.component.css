@@ -10,6 +10,14 @@
     color: #fff;
 }
 
+.chip.active{
+    color: #fff !important;
+    background-color: var(--primary-color) !important;
+}
+.chip.active .lg-dot{
+    background-color: hsl(0, 0%, 100%) !important;
+}
+
 .dropdown{
     transition: .5s;
 }

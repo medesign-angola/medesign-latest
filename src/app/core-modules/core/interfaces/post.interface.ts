@@ -1,10 +1,10 @@
-interface IPostSubCategory{
+export interface IPostSubCategory{
     id: string | number,
     name: string,
     slug: string,
 }
 
-interface IPostCategory{
+export interface IPostCategory{
     id: string | number,
     name: string,
     slug: string,

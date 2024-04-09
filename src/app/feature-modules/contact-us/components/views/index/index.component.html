@@ -1,0 +1,102 @@
+<div class="form-container max-w-[508px] mb-16">
+    <div class="switch mb-12">
+        <div class="switch-container bg-[#F5F5F5] rounded-full w-fit p-2 flex gap-4 justify-between items-center">
+            <button (click)="iamSingularFunction(true)">
+                <div class="chip px-3 py-2 active font-medium rounded-full"
+                [ngClass]="{
+                    'active': this.iAmSingular
+                }"
+                >
+                    Pessoal
+                </div>
+            </button>
+            <button (click)="iamSingularFunction(false)">
+                <div class="chip px-3 py-2 font-medium rounded-full"
+                [ngClass]="{
+                    'active': !this.iAmSingular
+                }"
+                >
+                    Empresa
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="form-body flex flex-col gap-y-8">
+        <form
+        [formGroup]="contactUsFormGroup"
+        (submit)="submit()"
+        >
+            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
+                <div class="input w-full">
+                    <label for="fullname" class="text-sm font-medium text-primary">Nome completo</label>
+                    <div>
+                        <input
+                        id="fullname"
+                        formControlName="fullname"
+                        class="bg-[#F5F5F5] w-full mt-3 px-4 py-3 border focus:outline-none border-[rgba(3,3,3,0.03)] rounded-lg"
+                        type="text"
+                        >
+                    </div>
+                </div>
+                <div class="input w-full">
+                    <label for="email" class="text-sm font-medium text-primary">Email</label>
+                    <div>
+                        <input
+                        id="email"
+                        formControlName="email"
+                        class="bg-[#F5F5F5] w-full mt-3 px-4 py-3 border focus:outline-none border-[rgba(3,3,3,0.03)] rounded-lg"
+                        type="text"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
+                <div class="input w-full">
+                    <label for="subject" class="text-sm font-medium text-primary">Assunto</label>
+                    <div>
+                        <input
+                        id="subject"
+                        formControlName="subject"
+                        class="bg-[#F5F5F5] w-full mt-3 px-4 py-3 border focus:outline-none border-[rgba(3,3,3,0.03)] rounded-lg"
+                        type="text"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
+                <div class="input w-full">
+                    <label for="message" class="text-sm font-medium text-primary">Mensagem</label>
+                    <div>
+                        <textarea
+                        id="message"
+                        formControlName="message"
+                        rows="6"
+                        class="bg-[#F5F5F5] w-full mt-3 resize-none px-4 py-3 border focus:outline-none border-[rgba(3,3,3,0.03)] rounded-lg"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-7 gap-x-7 gap-y-8 flex flex-row justify-between items-center">
+                <div class="input w-full">
+                    <div>
+                        <button
+                        type="button"
+                        (click)="goback()"
+                        class="w-full mt-3 px-6 py-3 text-lg font-medium text-[#030303]/40 rounded-full"
+                        >Cancelar</button>
+                    </div>
+                </div>
+                <div class="input w-full">
+                    <div>
+                        <button
+                        type="submit"
+                        [disabled]="this.contactUsFormGroup.invalid"
+                        class="w-full bg-primary disabled:bg-opacity-50 duration-[.3s] mt-3 px-5 py-3 text-lg font-semibold text-white rounded-full"
+                        >Enviar mensagem</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

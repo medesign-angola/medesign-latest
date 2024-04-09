@@ -138,8 +138,8 @@ export class WorksComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changeCategoryVisibilityEventHandler(categroyId: number): void{
-    let category: ICategory | undefined = this.categories.find((category: ICategory) => category.id === categroyId);
+  changeCategoryVisibilityEventHandler(categoryId: number): void{
+    let category: ICategory | undefined = this.categories.find((category: ICategory) => category.id === categoryId);
     if(category){
       category.isOpen = !category.isOpen;
     }

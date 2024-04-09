@@ -1,0 +1,64 @@
+<div class="section-content bg-[rgba(0,0,0,0.03)] py-10 xl:py-16">
+    <div class="limited-container flex flex-col items-center">
+        <div class="title max-w-[32rem]">
+            <h1 class="text-primary text-center text-[2rem] xl:text-[2.813rem] xl:leading-[3.25rem] xl:-tracking-[0.9px] font-medium leading-10 -tracking-[0.64px]">
+                Inscreva-se na newsletter
+            </h1>
+        </div>
+        <div class="description max-w-[28.813rem] my-6">
+            <p class="text-center text-primary/70 text-lg xl:-tracking-[0.36px]">
+                Receba em primeira mão nossa newsletter com todos os conteúdos que serão publicados aqui.
+            </p>
+        </div>
+        <div class="form w-full max-w-[25rem]">
+            <form class="flex w-full flex-col items-center"
+            [formGroup]="this.subscriptionForm"
+            (submit)="subscribe()"
+            >
+                <input
+                class="w-full px-4 py-3 rounded-full border border-black/10 bg-white"
+                placeholder="example@domain.com"
+                [ngClass]="{'invalid-input': this.subscriptionForm.get('email').invalid && this.subscriptionForm.get('email').touched && this.subscriptionForm.invalid}"        
+                formControlName="email"
+                type="email">
+
+                <div class="messages">
+                    <div class="error w-full text-center mt-3"
+                      *ngIf="this.subscriptionForm.get('email').invalid && this.subscriptionForm.get('email').touched && this.subscriptionForm.invalid"
+                      >
+                          <span
+                          class="text-primary font-medium w-full text-sm text-center"
+                          >
+                              Email inválido
+                          </span>
+                      </div>
+                      <div class="error w-full text-center mt-3"
+                      *ngIf="this.hasSubscribed | async"
+                      >
+                          <span
+                          class="text-primary font-medium w-full text-sm text-center"
+                          >
+                              Subscrição efectuada
+                          </span>
+                      </div>
+                      <div class="error w-full text-center mt-3"
+                      *ngIf="this.hasError | async"
+                      >
+                          <span
+                          class="text-primary font-medium w-full text-sm text-center"
+                          >
+                              Erro ao fazer a subscrição
+                          </span>
+                      </div>
+                </div>
+
+                <button
+                class="bg-primary px-6 py-3 font-semibold text-lg rounded-full w-fit text-white mt-8"
+                >
+                    <img src="assets/svg/static/loader.svg" *ngIf="this.isSubscribing |async" width="25" alt="">
+                    <span *ngIf="!(this.isSubscribing | async)">Inscrever-me</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

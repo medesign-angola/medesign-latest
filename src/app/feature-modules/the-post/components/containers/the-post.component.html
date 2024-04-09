@@ -1,0 +1,21 @@
+<div class="module-container py-20">
+
+    <div class="hero-section mb-20">
+        <md-hero
+        [categories]="(this.thePost) ? this.thePost.categories : []"
+        [viewsCount]="(this.thePost) ? this.thePost.viewsCount : 0"
+        [title]="(this.thePost) ? this.thePost.title : ''"
+        [created_at]="(this.thePost) ? this.thePost.createdAt : ''"
+        [time_to_read]="(this.thePost) ? this.thePost.readingTime : ''"
+        [heroCoverImage]="(this.thePost) ? this.thePost.imagePath : this.heroCoverImageEnum.POST"
+        />
+    </div>
+    <div class="display-section" #displaySectionElementRef>
+        <post-content [theContent]="(this.thePost) ? this.thePost.content : ''" />
+    </div>
+
+    <div class="subscription-section my-36">
+        <md-subscription />
+    </div>
+
+</div>

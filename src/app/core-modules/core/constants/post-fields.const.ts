@@ -1,0 +1,1 @@
+export const POST_WANTED_FIELDS: string = '_fields[]=id&_fields[]=slug&_fields[]=title&_fields[]=categories&_fields[]=images_size_custom&_fields[]=posted_at&_fields[]=acf&_fields[]=views_count&_fields[]=posted_at&_fields[]=content';

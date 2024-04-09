@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ScrollerService } from '@shared/services/scroller/scroller.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -9,7 +10,8 @@ import { BehaviorSubject } from 'rxjs';
 export class AppComponent implements OnInit {
   
   constructor(
-    private chageDetectorRef: ChangeDetectorRef
+    private chageDetectorRef: ChangeDetectorRef,
+    private scrollerService: ScrollerService
   ) {}
 
   @ViewChild('siteHeader') siteHeader!: ElementRef<HTMLElement>;
@@ -22,6 +24,10 @@ export class AppComponent implements OnInit {
   setHeaderHeight(event: any){
     this.headerHeight$.next(event);
     this.chageDetectorRef.detectChanges();
+  }
+
+  gotoTop(){
+    this.scrollerService.initialNavigation();
   }
 
 }

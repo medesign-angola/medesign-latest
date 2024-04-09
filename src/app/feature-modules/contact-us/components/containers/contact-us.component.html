@@ -1,0 +1,28 @@
+<div class="section-container flex justify-between items-stretch">
+    <div class="aside-banner text-white bg-primary w-full">
+        <!-- ml-[50%] -translate-x-[270px] -->
+        <div class="banner-container pt-7 ml-[50%] -translate-x-[270px]">
+            <div class="go-back">
+                <button (click)="goback()">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" fill="white" fill-opacity="0.1"/>
+                        <path d="M28 20H12M12 20L18 26M12 20L18 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="section-title mt-6 mb-12">
+                <h1 class="text-white w-[400px] text-5xl font-medium leading-[3.25rem] tracking-[-0.9px]">
+                    Existimos para transformar ideias e agregar valor.
+                </h1>
+            </div>
+            <div class="image">
+                <div class="w-full h-[25.438rem]"></div>
+            </div>
+        </div>
+    </div>
+    <div class="forms w-full">
+        <div class="panel-container pt-24 pl-24">
+            <router-outlet />
+        </div>
+    </div>
+</div>

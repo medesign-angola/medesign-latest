@@ -1,12 +1,38 @@
-nav ul li > a{
+.menu-for-desktop nav ul li > a{
     color: #fff;
     opacity: 70%;
     font-weight: 400;
     transition: .3s ease-in-out;
 }
-nav ul li > a:hover{
+.menu-for-desktop nav ul li > a:hover{
     opacity: 100%;
 }
 .input-search{
     transition: .6s ease-in-out;
 }
+/* .search-panel,
+.menu-mobile-panel{
+    transition: opacity .6s;
+} */
+
+/* .delay-disappear{
+    animation:  disappear 0.5s 1s infinite ease-in-out;
+}
+
+@keyframes disappear {
+    from{
+        z-index: 1;
+    }
+    to{
+        z-index: -1;
+    }
+} */
+
+/* @keyframes identifier2 {
+    from{
+        scale: 1;
+    }
+    to{
+        scale: 1.1;
+    }
+} */
