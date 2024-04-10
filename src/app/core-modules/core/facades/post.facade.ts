@@ -127,4 +127,8 @@ export class PostFacade implements IPostClass{
         return this.apiService.getPostBySlug(slug);
     }
 
+    searchPostOnApiByTerm(searchTerm: string): Observable<IPost[]>{
+        return this.apiService.searchPostByTerm(searchTerm);
+    }
+
 }

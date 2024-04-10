@@ -1,5 +1,12 @@
 <div class="form-container max-w-[508px] mb-16">
-    <div class="switch mb-12">
+    <div class="switch mb-12  flex">
+        <button
+        class=" mr-12 lg:hidden"
+        (click)="goback()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 12H4M4 12L10 18M4 12L10 6" stroke="#030303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
         <div class="switch-container bg-[#F5F5F5] rounded-full w-fit p-2 flex gap-4 justify-between items-center">
             <button (click)="iamSingularFunction(true)">
                 <div class="chip px-3 py-2 active font-medium rounded-full"
@@ -22,12 +29,13 @@
         </div>
     </div>
 
-    <div class="form-body flex flex-col gap-y-8">
+    <div class="form-body appear-softly" *ngIf="!(this.showEmailSentMessage | async) && !(this.showErrorMessage | async)">
         <form
+        class="flex flex-col gap-y-8"
         [formGroup]="contactUsFormGroup"
         (submit)="submit()"
         >
-            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
+            <div class="row flex flex-col lg:flex-row gap-x-7 gap-y-8 justify-between items-center">
                 <div class="input w-full">
                     <label for="fullname" class="text-sm font-medium text-primary">Nome completo</label>
                     <div>
@@ -51,8 +59,21 @@
                     </div>
                 </div>
             </div>
-            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
-                <div class="input w-full">
+            <div class="row flex flex-col lg:flex-row gap-x-7 gap-y-8 justify-between items-center">
+                <div class="input w-full appear-softly"
+                *ngIf="!this.iAmSingular"
+                >
+                    <label for="actuationArea" class="text-sm font-medium text-primary">Área de Actuação</label>
+                    <div>
+                        <input
+                        id="actuationArea"
+                        formControlName="actuationArea"
+                        class="bg-[#F5F5F5] w-full mt-3 px-4 py-3 border focus:outline-none border-[rgba(3,3,3,0.03)] rounded-lg"
+                        type="text"
+                        >
+                    </div>
+                </div>
+                <div class="input w-full duration-[.6s]">
                     <label for="subject" class="text-sm font-medium text-primary">Assunto</label>
                     <div>
                         <input
@@ -64,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row flex gap-x-7 gap-y-8 justify-between items-center">
+            <div class="row flex flex-col lg:flex-row gap-x-7 gap-y-8 justify-between items-center">
                 <div class="input w-full">
                     <label for="message" class="text-sm font-medium text-primary">Mensagem</label>
                     <div>
@@ -77,8 +98,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-7 gap-x-7 gap-y-8 flex flex-row justify-between items-center">
-                <div class="input w-full">
+            <div class="row mt-7 gap-x-7 gap-y-8 flex flex-row justify-center lg:justify-between items-center">
+                <div class="input w-full hidden lg:block">
                     <div>
                         <button
                         type="button"
@@ -87,16 +108,61 @@
                         >Cancelar</button>
                     </div>
                 </div>
-                <div class="input w-full">
-                    <div>
+                <div class="input w-fit lg:w-full">
+                    <div class="">
                         <button
                         type="submit"
                         [disabled]="this.contactUsFormGroup.invalid"
-                        class="w-full bg-primary disabled:bg-opacity-50 duration-[.3s] mt-3 px-5 py-3 text-lg font-semibold text-white rounded-full"
-                        >Enviar mensagem</button>
+                        class="bg-primary w-fit lg:w-full flex justify-center items-center disabled:bg-opacity-50 duration-[.3s] mt-3 px-5 py-3 text-lg font-semibold text-white rounded-full"
+                        >
+                            <img src="assets/svg/static/loader.svg" width="25" *ngIf="this.isSendingTheEmail | async" alt="">
+                            <span *ngIf="!(this.isSendingTheEmail | async)">Enviar mensagem</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
+
+    <div class="messages appear-softly" *ngIf="(this.showEmailSentMessage | async) || (this.showErrorMessage | async)">
+        <div class="success" *ngIf="(this.showEmailSentMessage | async)">
+            <div class="title lg:max-w-[50%]">
+                <h1 class="text-primary text-2xl font-semibold text-center lg:text-left">
+                    O seu formulário foi enviado com sucesso!
+                </h1>
+            </div>
+            <div class="svg mt-6">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5002 19.9997L17.5002 24.9997L27.5002 14.9997M36.6668 19.9997C36.6668 29.2044 29.2049 36.6663 20.0002 36.6663C10.7954 36.6663 3.3335 29.2044 3.3335 19.9997C3.3335 10.7949 10.7954 3.33301 20.0002 3.33301C29.2049 3.33301 36.6668 10.7949 36.6668 19.9997Z" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="gohome mt-10">
+                <a
+                class="bg-primary text-white px-6 py-3 rounded-full font-medium text-center block w-fit"
+                [routerLink]="['/']">
+                    Página inicial
+                </a>
+            </div>
+        </div>
+        <div class="error" *ngIf="(this.showErrorMessage | async)">
+            <div class="title lg:max-w-[50%]">
+                <h1 class="text-primary text-2xl font-semibold text-center lg:text-left">
+                    Erro ao enviar esta mensagem, tente novamente ou verifique os seus dados!
+                </h1>
+            </div>
+            <div class="svg mt-6">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.5002 19.9997L17.5002 24.9997L27.5002 14.9997M36.6668 19.9997C36.6668 29.2044 29.2049 36.6663 20.0002 36.6663C10.7954 36.6663 3.3335 29.2044 3.3335 19.9997C3.3335 10.7949 10.7954 3.33301 20.0002 3.33301C29.2049 3.33301 36.6668 10.7949 36.6668 19.9997Z" stroke="#ff3300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="gohome mt-10">
+                <a
+                class="bg-primary text-white px-6 py-3 rounded-full font-medium text-center block w-fit"
+                [routerLink]="['/']">
+                    Página inicial
+                </a>
+            </div>
+        </div>
+    </div>
+
 </div>
