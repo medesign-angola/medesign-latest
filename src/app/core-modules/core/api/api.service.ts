@@ -113,4 +113,14 @@ export class ApiService{
                         );
     }
 
+    contactUs(body: any): Observable<any>{
+        return this.http.post(environment.contactApiUrl, body);
+    }
+
+    searchPostByTerm(searchTerm: string): Observable<IPost[]>{
+        return this.http.get<IPost[]>(`${ environment.api }/wp/v2/posts?search=${ searchTerm }&${ POST_WANTED_FIELDS }`).pipe(
+            map((incoming: any[]) => this.transformer.handlePostsTransformation(incoming))
+        );
+    }
+
 }

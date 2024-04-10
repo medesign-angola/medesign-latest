@@ -1,5 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { PostFacade } from '@core/facades/post.facade';
+import { IPost } from '@core/interfaces/post.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'md-header',
@@ -10,7 +13,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private postFacade: PostFacade
   ){}
 
   @ViewChild('headerTopContentElement') headerTopElement!: ElementRef<HTMLElement>;
@@ -23,6 +27,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   menuMobileVisible: boolean = false;
   searchPanelVisible: boolean = false;
+
+  searchTermInput: string = '';
+  searchedPosts: IPost[] = [];
+
+  isSearching$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {
     
@@ -62,6 +71,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   closeSearchPanel(){
     this.searchPanelVisible = false;
+    this.searchedPosts = [];
     this.changeHeaderHeight();
   }
 
@@ -97,6 +107,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       bodyElement.style.height = 'auto';
       bodyElement.style.overflow = 'auto';
     }
+  }
+
+  searchByTerm(){
+    this.searchedPosts = [];
+    this.isSearching$.next(true);
+    this.postFacade.searchPostOnApiByTerm(this.searchTermInput).subscribe((searchResults: IPost[]) => {
+      this.searchedPosts = searchResults;
+      this.isSearching$.next(false);
+    });
   }
 
 }

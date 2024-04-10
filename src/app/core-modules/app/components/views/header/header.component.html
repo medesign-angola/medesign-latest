@@ -137,8 +137,68 @@
                     </svg>
                     <input
                     type="text"
+                    [(ngModel)]="this.searchTermInput"
+                    (input)="this.searchByTerm()"
                     class="py-3 w-full text-white bg-transparent focus:outline-none placeholder:font-medium placeholder:text-white/40"
-                    placeholder="Pesquisar">
+                    placeholder="Pesquisar publicação">
+                </div>
+            </div>
+        </div>
+        <div class="search-results">
+            <div class="limited-container py-5">
+                <div class="title w-full py-5 bg-primary">
+                    <h6 class="text-white/90 text-xs">{{ this.searchedPosts.length }} resultados</h6>
+                </div>
+                <div class="results">
+                    <div class="search-posts-container flex flex-col gap-y-4 overflow-y-auto max-h-[50vh]">
+
+                        @if (this.searchTermInput.length > 0) {
+                            @if ((this.isSearching$ | async)) {
+                                <div class="loading">
+                                    <p class="text-white/70 text-sm font-medium">
+                                        Procurando por resultados...
+                                    </p>
+                                </div>
+                            } @else {
+                                @if(!(this.searchedPosts.length > 0)){
+    
+                                    <div class="not-found">
+                                        <p class="text-white/70 text-sm font-medium">
+                                            Sem resultados para esta pesquisa.
+                                        </p>
+                                    </div>
+    
+                                }@else {
+                                    @for (post of this.searchedPosts; track $index) {
+                                        <div class="post-list-item flex gap-x-3 justify-start items-start">
+                                            <div class="image w-20 h-20 rounded-lg overflow-hidden">
+                                                <img src="{{ post.imagePath }}" class="w-full h-full object-cover object-center" alt="">
+                                            </div>
+                                            <div class="post-details flex flex-col gap-y-2">
+                                                <div class="post-title max-w-[192px]">
+                                                    <a
+                                                    (click)="this.closeSearchPanel()"
+                                                    [routerLink]="['/new/' + post.slug]"
+                                                    >
+                                                        <h1 class="text-white font-semibold limit-text-lines two-lines">
+                                                            {{ post.title }}
+                                                        </h1>
+                                                    </a>
+                                                </div>
+                                                <div class="tiny-details flex gap-3 justify-start items-center">
+                                                    <div class="font-semibold text-xs w-fit limit-text-lines one-line text-white">Há {{ post.createdAt }}</div>
+                                                    <div class="text-xs uppercase max-w-[131px] limit-text-lines one-line text-white/80">{{ post.readingTime }} de leitura</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        } @else {
+
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
