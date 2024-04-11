@@ -9,8 +9,9 @@
         <posts-display
         (changeScopeEventEmitter)="this.changeScopeEventHandler($event)"
         (changeCategoryDropdownStatusEventEmitter)="this.changeCategoryVisibilityEventHandler($event)"
+        (searchByTermEventEmmiter)="this.searchByTermEventHandler($event)"
         [categories]="this.categories"
-        [posts]="this.posts"
+        [posts]="(this.searchTerm.length > 0) ? this.postsToDisplayWithFilter : this.posts"
         />
     </div>
 

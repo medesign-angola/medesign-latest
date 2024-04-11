@@ -26,6 +26,9 @@ export class DisplayComponent implements OnInit, OnChanges, AfterViewInit {
   dropdownMaxHeights: { [key: string]: number } = { }
   pretendedCategoryWithChildrens: ICategory | undefined;
 
+  searchTerm: string = '';
+  @Output() searchByTermEventEmmiter: EventEmitter<string> = new EventEmitter<string>();
+
   ngOnInit(): void {
     
   }
@@ -121,6 +124,10 @@ export class DisplayComponent implements OnInit, OnChanges, AfterViewInit {
         });
       }
     }
+  }
+
+  searchByTerm(){
+    this.searchByTermEventEmmiter.emit(this.searchTerm);
   }
 
 }

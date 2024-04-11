@@ -10,7 +10,17 @@ import { LoaderService } from '@core/services/loader/loader.service';
   styleUrl: './details.component.css'
 })
 export class DetailsComponent implements OnInit, OnChanges {
-  @Input() theWork!: IWork;
+  @Input() theWork: IWork = {
+    id: 0,
+    imagePath: '',
+    clientName: '',
+    clientNameSlug: '',
+    description: '',
+    highlightColor: '',
+    appearOnHomePage: false,
+    areas: []
+  };
+  
   theScope!: string;
   hasOptionalInfo: boolean = false;
   optionalInfo!: { name: string, value: string }[];

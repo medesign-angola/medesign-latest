@@ -17,9 +17,10 @@
                     <div class="search-input shrink">
                         <input
                         type="text"
-                        name="searchWork"
+                        [(ngModel)]="this.searchTerm"
+                        (input)="searchByTerm()"
                         class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
-                        placeholder="Pesquisar notícias"
+                        placeholder="Pesquisar notícias por título"
                         >
                     </div>
                 </div>
@@ -118,9 +119,10 @@
                             <div class="search-input shrink">
                                 <input
                                 type="text"
-                                name="searchWork"
+                                [(ngModel)]="this.searchTerm"
+                                (input)="searchByTerm()"
                                 class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
-                                placeholder="Pesquisar notícias"
+                                placeholder="Pesquisar notícias por título"
                                 >
                             </div>
                         </div>

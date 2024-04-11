@@ -7,6 +7,7 @@ import { DisplayComponent } from './components/views/display/display.component';
 import { HeroComponent } from './components/views/hero/hero.component';
 import { SharedModule } from '@shared/shared.module';
 import { PostTemplateComponent } from '@shared/components/templates/post/post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { PostTemplateComponent } from '@shared/components/templates/post/post.co
   imports: [
     SharedModule,
     PostTemplateComponent,
-    BlogRoutingModule
+    BlogRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BlogModule { }
