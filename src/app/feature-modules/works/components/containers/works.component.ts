@@ -26,9 +26,12 @@ export class WorksComponent implements OnInit, AfterViewInit {
 
   categories: ICategory[] = [];
   works: IWork[] = [];
+  worksToDisplayWithFilter: IWork[] = [];
   lastSelectedScopeIndex: number = -1;
 
   heroCoverImageEnum = HeroCoverImageEnum;
+
+  searchTerm: string = '';
 
   ngOnInit(): void {
 
@@ -143,6 +146,11 @@ export class WorksComponent implements OnInit, AfterViewInit {
     if(category){
       category.isOpen = !category.isOpen;
     }
+  }
+
+  searchByTermEventHandler(searchTerm: string): void{
+    this.searchTerm = searchTerm;
+    this.worksToDisplayWithFilter = this.works.filter(work => work.clientName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
   }
 
 }

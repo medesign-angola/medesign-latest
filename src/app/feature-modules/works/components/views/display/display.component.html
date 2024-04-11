@@ -18,8 +18,10 @@
                         <input
                         type="text"
                         name="searchWork"
+                        [(ngModel)]="this.searchTerm"
+                        (input)="searchByTerm()"
                         class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
-                        placeholder="Pesquisar projectos"
+                        placeholder="Pesquisar pelo nome"
                         >
                     </div>
                 </div>
@@ -118,9 +120,10 @@
                             <div class="search-input shrink">
                                 <input
                                 type="text"
-                                name="searchWork"
+                                [(ngModel)]="this.searchTerm"
+                                (input)="searchByTerm()"
                                 class=" bg-transparent placeholder:text-primary/70 focus:outline-none placeholder:font-medium"
-                                placeholder="Pesquisar notícias"
+                                placeholder="Pesquisar pelo nome"
                                 >
                             </div>
                         </div>
@@ -131,8 +134,8 @@
 
                 <work-template
                 [works]="this.works"
-                [cardWidth]="'w-full md:w-[calc((32.8%-5px))]'"
-                [placeholderDimentions]="'w-full md:w-[calc((32.8%-5px))] h-[22rem]'"
+                [cardWidth]="'w-full md:w-[calc((32.8%-8px))] lg:w-[calc((32.8%-8px))] 3xl:w-[calc((32.8%-5px))]'"
+                [placeholderDimentions]="'w-full md:w-[calc((32.8%-8px))] lg:w-[calc((32.8%-8px))] 3xl:w-[calc((32.8%-5px))] h-[14.438rem] 3xl:h-[22rem]'"
                 [cardType]="'small'"
                 [cardsGap]="16"
                 [totalPlaceholderCards]="6"

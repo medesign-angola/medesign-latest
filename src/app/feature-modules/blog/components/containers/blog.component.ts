@@ -25,11 +25,14 @@ export class BlogComponent implements OnInit {
 
   categories: ICategory[] = [];
   posts: IPost[] = [];
+  postsToDisplayWithFilter: IPost[] = [];
   lastSelectedScopeIndex: number = -1;
 
   heroCoverImageEnum = HeroCoverImageEnum;
 
   pageSectionEnum = PageSectionEnum;
+
+  searchTerm: string = '';
 
   ngOnInit(): void {
 
@@ -49,6 +52,8 @@ export class BlogComponent implements OnInit {
           const queryChildren = queryParams.get('children');
           
           this.loaderService.setLoading(PageSectionEnum.BLOG, true);
+
+          this.searchTerm = '';
 
           this.changeSelectedScope(queryScope, queryChildren);
 
@@ -147,6 +152,11 @@ export class BlogComponent implements OnInit {
     if(category){
       category.isOpen = !category.isOpen;
     }
+  }
+
+  searchByTermEventHandler(searchTerm: string): void{
+    this.searchTerm = searchTerm;
+    this.postsToDisplayWithFilter = this.posts.filter(post => post.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
   }
 
 }
