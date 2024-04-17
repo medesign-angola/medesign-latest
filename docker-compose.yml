@@ -1,0 +1,13 @@
+# docker-compose
+version: '3.9'
+services:
+  medesign-latest:
+    container_name: 'medesign-latest'
+    build:
+      context: .
+      args:
+        - CONFIG=production
+        - BASE_URL=/
+    restart: always
+    ports:
+      - 8080:80
