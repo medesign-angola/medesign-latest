@@ -5,6 +5,7 @@ import { PageSectionEnum } from '@core/Enums/page-section.enum';
 import { PostFacade } from '@core/facades/post.facade';
 import { IPost } from '@core/interfaces/post.interface';
 import { LoaderService } from '@core/services/loader/loader.service';
+import { MetaTagsService } from '@shared/services/meta/meta-tags.service';
 import { ScrollerService } from '@shared/services/scroller/scroller.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class ThePostComponent implements OnInit {
   private postFacade = inject(PostFacade);
   public loaderService = inject(LoaderService);
   private scrollService = inject(ScrollerService);
+  private metaTags = inject(MetaTagsService);
   
   thePost: IPost | null = null;
 
@@ -40,6 +42,7 @@ export class ThePostComponent implements OnInit {
             this.thePost = (thePost) ? thePost[0] : null;
   
             if(this.thePost){
+              this.metaTags.addSocialMediaMetaTags(this.thePost);
               this.loaderService.setLoading(PageSectionEnum.POST, false);
               
             }else{
