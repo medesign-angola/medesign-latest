@@ -1,8 +1,8 @@
 # docker-compose
 version: '3.9'
 services:
-  md-website:
-    container_name: 'md-website'
+  angular_and_nginx:
+    container_name: 'angular_and_nginx'
     build:
       context: .
       args:
@@ -11,8 +11,8 @@ services:
     restart: always
     ports:
       - 80:4000
-  md-mailme-app:
-    container_name: 'md-mailme'
+  php:
+    container_name: 'php_server'
     build: /home/md-mailme-app/
     ports:
       - 8001:8001
