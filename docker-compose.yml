@@ -1,8 +1,8 @@
 # docker-compose
 version: '3.9'
 services:
-  medesign-latest:
-    container_name: 'medesign-latest'
+  md-website:
+    container_name: 'md-website'
     build:
       context: .
       args:
@@ -11,3 +11,10 @@ services:
     restart: always
     ports:
       - 80:4000
+  md-mailme-app:
+    container_name: 'md-mailme'
+    build: /home/md-mailme-app/
+    ports:
+      - 8001:8001
+    volumes:
+      - /home/md-mailme-app/
