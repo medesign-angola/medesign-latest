@@ -10,13 +10,5 @@ services:
         - BASE_URL=/
     restart: always
     ports:
-      - 80:4000
+      - 4000:4000
       - 443:4000
-  # mailme:
-  #   container_name: 'php_server'
-  #   build:
-  #     context: /home/md-mailme-app
-  #     args:
-  #       - BASE_URL=/
-  #   ports:
-  #     - 8080:80
