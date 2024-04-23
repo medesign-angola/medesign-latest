@@ -1,8 +1,8 @@
 # docker-compose
 version: '3.9'
 services:
-  frontend:
-    container_name: 'angular_and_nginx'
+  nodejs:
+    container_name: 'frontend-angular-17'
     build:
       context: .
       args:
