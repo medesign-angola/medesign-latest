@@ -6,8 +6,6 @@ RUN npm install
 COPY . .
 ARG CONFIG=qa
 ARG BASE_URL=/
-RUN npm config set fetch-retry-mintimeout 20000
-RUN npm config set fetch-retry-maxtimeout 120000
 RUN npm run build
 
 # Stage 1: serve app with nginx server
